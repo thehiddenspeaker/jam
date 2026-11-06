@@ -16,7 +16,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Gamemanager="*uid://bjf1mchcaj05d"
+Global="*uid://bjf1mchcaj05d"
 
 [display]
 
