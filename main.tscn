@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://dbipapmkjngp4"]
+
+[node name="main" type="Control" unique_id=1660209080]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="ColorRect" parent="." unique_id=860306054]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.22959322, 0.22959325, 0.22959319, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=854279258]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="gamelayout" type="HBoxContainer" parent="MarginContainer" unique_id=2046741473]
+custom_minimum_size = Vector2(0, 65)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Panel" type="Panel" parent="MarginContainer/gamelayout" unique_id=1967739131]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel" unique_id=663465721]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "idk1"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="MarginContainer/gamelayout" unique_id=643335365]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel2" unique_id=676762365]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "idk two"
+horizontal_alignment = 1
+
+[node name="Panel3" type="Panel" parent="MarginContainer/gamelayout" unique_id=1637460014]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3" unique_id=1694088742]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "idk 3"
+horizontal_alignment = 1
