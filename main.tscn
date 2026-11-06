@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://dbipapmkjngp4"]
 
+[ext_resource type="Script" uid="uid://s7lyrglljvo" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://jreg8l5ssx6a" path="res://Button.png" id="1_ig7tw"]
+
 [node name="main" type="Control" unique_id=1660209080]
 layout_mode = 3
 anchors_preset = 15
@@ -7,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_0xm2m")
 
 [node name="background" type="ColorRect" parent="." unique_id=860306054]
 layout_mode = 1
@@ -39,11 +43,12 @@ theme_override_constants/separation = 12
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel" unique_id=663465721]
+[node name="MoneyLabel" type="Label" parent="MarginContainer/gamelayout/Panel" unique_id=663465721]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
-text = "idk1"
+theme_override_colors/font_color = Color(0.01570776, 0.24841452, 1, 1)
+theme_override_font_sizes/font_size = 80
 horizontal_alignment = 1
 
 [node name="Panel2" type="Panel" parent="MarginContainer/gamelayout" unique_id=643335365]
@@ -62,9 +67,91 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3" unique_id=1694088742]
+[node name="Button" type="Button" parent="MarginContainer/gamelayout/Panel3" unique_id=2134902223]
+layout_mode = 1
+anchors_preset = -1
+scale = Vector2(0.6, 0.3)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+action_mode = 0
+text = "BUTTON 1
+"
+icon = ExtResource("1_ig7tw")
+clip_text = true
+
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Button" unique_id=1668029936]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "idk 3"
-horizontal_alignment = 1
+offset_left = 46.666664
+offset_top = 130.0
+offset_right = 421.66666
+offset_bottom = 254.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 90
+text = "Button 1"
+
+[node name="Button2" type="Button" parent="MarginContainer/gamelayout/Panel3" unique_id=999645776]
+layout_mode = 1
+anchors_preset = -1
+offset_top = 150.0
+offset_right = 454.0
+offset_bottom = 598.0
+scale = Vector2(0.6, 0.3)
+action_mode = 0
+icon = ExtResource("1_ig7tw")
+clip_text = true
+
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Button2" unique_id=1184699947]
+layout_mode = 0
+offset_left = 46.666664
+offset_top = 130.0
+offset_right = 421.66666
+offset_bottom = 254.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 90
+text = "Button 2"
+
+[node name="Button3" type="Button" parent="MarginContainer/gamelayout/Panel3" unique_id=687077863]
+layout_mode = 1
+anchors_preset = -1
+offset_top = 300.0
+offset_right = 454.0
+offset_bottom = 748.0
+scale = Vector2(0.6, 0.3)
+action_mode = 0
+icon = ExtResource("1_ig7tw")
+clip_text = true
+
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Button3" unique_id=1779831404]
+layout_mode = 0
+offset_left = 46.666664
+offset_top = 130.0
+offset_right = 421.66666
+offset_bottom = 254.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 90
+text = "Button 3"
+
+[node name="Button4" type="Button" parent="MarginContainer/gamelayout/Panel3" unique_id=1964571725]
+layout_mode = 1
+anchors_preset = -1
+offset_top = 450.0
+offset_right = 454.0
+offset_bottom = 898.0
+scale = Vector2(0.6, 0.3)
+action_mode = 0
+icon = ExtResource("1_ig7tw")
+clip_text = true
+
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Button4" unique_id=1430563371]
+layout_mode = 0
+offset_left = 46.666664
+offset_top = 130.0
+offset_right = 421.66666
+offset_bottom = 254.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 90
+text = "Button 4"
+
+[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Button" to="." method="_Button1Press"]
+[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Button2" to="." method="_Button2Press"]
+[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Button3" to="." method="_Button3Press"]
