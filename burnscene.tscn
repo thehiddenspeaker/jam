@@ -61,3 +61,6 @@ texture = ExtResource("2_hkqo0")
 [node name="resources" type="Node2D" parent="gamearea/SubViewport/world" unique_id=2002794111]
 
 [node name="buildings" type="Node2D" parent="gamearea/SubViewport/world" unique_id=1869525427]
+
+[node name="Camera2D" type="Camera2D" parent="gamearea/SubViewport/world" unique_id=1232950710]
+position = Vector2(256, 256)
