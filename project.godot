@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="jam"
+run/main_scene="uid://dbipapmkjngp4"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Gamemanager="*uid://bjf1mchcaj05d"
+global="*uid://bjf1mchcaj05d"
 
 [display]
 
