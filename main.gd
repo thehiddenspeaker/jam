@@ -51,6 +51,9 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if global.lose:
+		get_tree().change_scene_to_file("res://losescreen.tscn")
+	
 	
 	timer -=delta
 	if timer <0:

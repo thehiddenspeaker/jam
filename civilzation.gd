@@ -295,7 +295,8 @@ func check_game_over():
 	if castle_count >= 5:
 		game_over = true
 		print("GAME OVER! FIVE CASTLES HAVE BEEN BUILT!")
-		get_tree().paused = true
+		global.loseState()
+		
 func destroy_in_fire(fire):
 	var fire_steps = 20
 

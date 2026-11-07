@@ -46,7 +46,7 @@ func castleDestroyed() -> void:
 	pass
 func loseState():
 	lose = true
-	get_tree().change_scene_to_file("res://losescreen.tscn")
+	
 func parseUpgrades(upgradeToParse: Dictionary) -> void:
 	upgrade.merge(upgradeToParse,true)
 	
