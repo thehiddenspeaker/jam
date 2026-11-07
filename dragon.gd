@@ -15,7 +15,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 
 	# Mouse steering.
-	speed = 50 * pow(1.1,global.upgrade["dragonspeed"])
+	speed = 50 * pow(1.1,global.upgrade["dragonSpeed"])
 	turn_speed = 1.5 * pow(1.1,global.upgrade["turnSpeed"])
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		var target_direction = global_position.direction_to(
