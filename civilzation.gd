@@ -9,6 +9,7 @@ var upgrade = {
 	"citySpawnInterval":1,
 	"castleSpawnChance":1,
 	"castleSpawnInterval":1,
+	"rebuildTime":1,
 	"villageClustering":1,
 	"cityClustering":1,
 	"castleAttraction":1
@@ -26,6 +27,9 @@ const BURNT_GRASS = Vector2i(2, 0)
 # WORLD SETTINGS
 const WORLD_SIZE = Vector2i(32, 32)
 var game_over = false
+# DIFFICULTY
+var game_time: float = 0.0
+var difficulty: float = 1.0
 # CIVILIZATION SETTINGS
 @export var villages_can_become_cities = true
 @export var cities_can_become_castles = true
@@ -270,7 +274,13 @@ func attempt_spawn_castle():
 			register_building(castle_position, "castle")
 			check_game_over()
 			return
+func update_difficulty(delta: float):
+	game_time += delta
 
+	var time_pressure = game_time / 120.0
+	var population_pressure = buildings.size() / 20.0
+
+	difficulty = 1.0 + time_pressure + population_pressure
 
 func check_game_over():
 	if game_over:
@@ -377,8 +387,8 @@ func apply_upgrades():
 	#village_spawn_chance = min(1.0, 0.75 * pow(1.15, upgrades["villageSpawnChance"] - 1))
 	city_spawn_chance = min(1.0, 0.35 * pow(1.15, upgrades["citySpawnChance"] - 1))
 	castle_spawn_chance = min(1.0, 0.20 * pow(1.15, upgrades["castleSpawnChance"] - 1))
-	fast_rebuild_time = 3.0 * pow(1.15, upgrades["rebuildtime"])
-	normal_rebuild_time = 15.0 * pow(1.15, upgrades["rebuildtime"])
+	fast_rebuild_time = 3.0 * pow(1.15, upgrades["rebuildTime"])
+	normal_rebuild_time = 15.0 * pow(1.15, upgrades["rebuildTime"])
 	#village_spawn_interval = 2.0 * pow(0.9, upgrades["villageSpawnInterval"] - 1)
 	city_spawn_interval = 8.0 * pow(0.9, upgrades["citySpawnInterval"] - 1)
 	castle_spawn_interval = 25.0 * pow(0.9, upgrades["castleSpawnInterval"] - 1)
@@ -393,25 +403,46 @@ func _process(delta):
 	if game_over:
 		return
 
-	village_timer += delta
-	city_timer += delta
-	castle_timer += delta
+	# Update difficulty.
+	update_difficulty(delta)
 
-	if village_timer >= village_spawn_interval:
+	# Update upgrades.
+	apply_upgrades()
+
+	# Calculate effective spawn rates.
+	var rate_multiplier = sqrt(difficulty)
+
+	var village_interval = max(0.5, village_spawn_interval / rate_multiplier)
+	var city_interval = max(1.5, city_spawn_interval / rate_multiplier)
+	var castle_interval = max(4.0, castle_spawn_interval / rate_multiplier)
+
+	var village_chance = min(0.95, village_spawn_chance * pow(difficulty, 0.25))
+	var city_chance = min(0.95, city_spawn_chance * pow(difficulty, 0.45))
+	var castle_chance = min(0.95, castle_spawn_chance * pow(difficulty, 0.65))
+
+	# Village spawning.
+	village_timer += delta
+
+	if village_timer >= village_interval:
 		village_timer = 0.0
 
-		if randf() < village_spawn_chance:
-			apply_upgrades()
+		if randf() < village_chance:
 			attempt_spawn_village()
 
-	if city_timer >= city_spawn_interval:
+	# City spawning.
+	city_timer += delta
+
+	if city_timer >= city_interval:
 		city_timer = 0.0
 
-		if randf() < city_spawn_chance:
+		if randf() < city_chance:
 			attempt_spawn_city()
 
-	if castle_timer >= castle_spawn_interval:
+	# Castle spawning.
+	castle_timer += delta
+
+	if castle_timer >= castle_interval:
 		castle_timer = 0.0
 
-		if randf() < castle_spawn_chance:
+		if randf() < castle_chance:
 			attempt_spawn_castle()
