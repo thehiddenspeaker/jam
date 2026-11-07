@@ -26,6 +26,11 @@ var upgrade = {
 @export var FirePanel: Panel
 @export var CivPanel: Panel
 
+#tab buttons
+@export var DragonTab: Button
+@export var FireTab: Button
+@export var CivTab: Button
+
 #buttons
 @export var dragonSpeed: Button
 @export var turnSpeed: Button
@@ -41,41 +46,80 @@ var upgrade = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	_setup_tabs()
+	_setup_upgrade_buttons()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
 	timer -=delta
 	if timer <0:
+		global.parseUpgrades(upgrade)
 		timer =1
 		
-	global.parseUpgrades(upgrade)
 	if money_label != null:
 		money_label.text = str(global.money)
+
+func _setup_tabs() -> void:
+	var tabs := {
+		DragonTab:DragonPanel,
+		FireTab:FirePanel,
+		CivTab:CivPanel,
+	}
+	var group := ButtonGroup.new()
+	for tab in tabs:
+		tab.toggle_mode = true
+		tab.button_group = group
+		tab.pressed.connect(_show_panel.bind(tabs[tab]))
+		DragonTab.button_pressed = true
+		_show_panel(DragonPanel)
+
+func _setup_upgrade_buttons() -> void:
+	var buttons := {
+		"dragonSpeed": dragonSpeed,
+		"turnSpeed": turnSpeed,
+		"fireLength": fireLength,
+		"fireWidth": fireWidth,
+		"fireDamage": fireDamage,
+		"rebuildTime": rebuild_time,
+		"villageClustering": village_clustering,
+		"cityClustering": city_clustering,
+		"castleAttraction": castleAttraction,
+	}
+	for key in buttons:
+		var button: Button = buttons[key]
+		if button:
+			button.pressed.connect(purchase.bind(key, button))
+
+func _show_panel(active: Panel) -> void:
+	for panel in [DragonPanel, FirePanel, CivPanel]:
+		var on: bool = (panel == active)
+		panel.visible = on
+		panel.process_mode = Node.PROCESS_MODE_INHERIT if on else Node.PROCESS_MODE_DISABLED
+
 
 func passUpgrades() -> Dictionary:
 	return upgrade
 	
-func toggle_panel(panel: Panel, is_toggled: bool) -> void:
-	if not panel: 
-		print("nopanelerror")
-		return
-	if is_toggled:
-		panel.process_mode = Node.PROCESS_MODE_DISABLED
-		panel.hide()
-	else:
-		panel.process_mode = Node.PROCESS_MODE_INHERIT
-		panel.show()
-
-func _on_dragon_toggled(toggled_on: bool) -> void:
-	toggle_panel(DragonPanel, toggled_on)
-
-func _on_fire_toggled(toggled_on: bool) -> void:
-	toggle_panel(FirePanel, toggled_on)
-
-func _on_civilization_toggled(toggled_on: bool) -> void:
-	toggle_panel(CivPanel, toggled_on)
+#func toggle_panel(panel: Panel, is_toggled: bool) -> void:
+	#if not panel: 
+		#print("nopanelerror")
+		#return
+	#if is_toggled:
+		#panel.process_mode = Node.PROCESS_MODE_DISABLED
+		#panel.hide()
+	#else:
+		#panel.process_mode = Node.PROCESS_MODE_INHERIT
+		#panel.show()
+#
+#func _on_dragon_toggled(toggled_on: bool) -> void:
+	#toggle_panel(DragonPanel, toggled_on)
+#
+#func _on_fire_toggled(toggled_on: bool) -> void:
+	#toggle_panel(FirePanel, toggled_on)
+#
+#func _on_civilization_toggled(toggled_on: bool) -> void:
+	#toggle_panel(CivPanel, toggled_on)
 
 
 func purchase(button) -> void:
@@ -99,7 +143,106 @@ func speedpurchase() -> void:
 		flash_red(dragonSpeed)
 	pass 
 	
-	
-	
-	
-	
+
+
+func turnspeedpurchase() -> void:
+	var price =1
+	price = upgrade["turnSpeed"]*10
+	if global.money - price > 0:
+		price = -price
+		global.changeMoney(price)
+		upgrade["turnSpeed"]+=1
+	else:
+		print("broke")
+		flash_red(dragonSpeed)
+	pass 
+
+
+func firelengthpurchase() -> void:
+	var price =1
+	price = upgrade["fireLength"]*10
+	if global.money - price > 0:
+		price = -price
+		global.changeMoney(price)
+		upgrade["fireLength"]+=1
+	else:
+		print("broke")
+		flash_red(dragonSpeed)
+	pass 
+
+
+func firewidthpurchase() -> void:
+	var price =1
+	price = upgrade["fireWidth"]*10
+	if global.money - price > 0:
+		price = -price
+		global.changeMoney(price)
+		upgrade["fireWidth"]+=1
+	else:
+		print("broke")
+		flash_red(dragonSpeed)
+	pass 
+
+
+func firedamagepurchase() -> void:
+	var price =1
+	price = upgrade["fireDamage"]*10
+	if global.money - price > 0:
+		price = -price
+		global.changeMoney(price)
+		upgrade["fireDamage"]+=1
+	else:
+		print("broke")
+		flash_red(dragonSpeed)
+	pass 
+
+
+func rebuildtimepurchase() -> void:
+	var price =1
+	price = upgrade["rebuildTime"]*10
+	if global.money - price > 0:
+		price = -price
+		global.changeMoney(price)
+		upgrade["rebuildTime"]+=1
+	else:
+		print("broke")
+		flash_red(dragonSpeed)
+	pass 
+
+
+func villageclusteringpurchase() -> void:
+	var price =1
+	price = upgrade["villageClustering"]*10
+	if global.money - price > 0:
+		price = -price
+		global.changeMoney(price)
+		upgrade["villageClustering"]+=1
+	else:
+		print("broke")
+		flash_red(dragonSpeed)
+	pass 
+
+
+func cityclusteringpurchase() -> void:
+	var price =1
+	price = upgrade["cityClustering"]*10
+	if global.money - price > 0:
+		price = -price
+		global.changeMoney(price)
+		upgrade["cityClustering"]+=1
+	else:
+		print("broke")
+		flash_red(dragonSpeed)
+	pass 
+
+func castleattractionpurchase() -> void:
+	var price =1
+	price = upgrade["castleAttraction"]*10
+	if global.money - price > 0:
+		price = -price
+		global.changeMoney(price)
+		upgrade["castleAttraction"]+=1
+	else:
+		print("broke")
+		flash_red(dragonSpeed)
+	pass 
