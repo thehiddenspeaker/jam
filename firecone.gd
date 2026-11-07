@@ -1,11 +1,32 @@
 extends Polygon2D
 
+@export var fire_length: float = 120.0
+@export var fire_width: float = 25.0
+@export var civilization: TileMapLayer
+@export var damage_interval: float = 0.1
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var damage_timer = 0.0
 
+func _ready():
+	color = Color(1.0, 0.3, 0.0, 0.7)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	polygon = PackedVector2Array([
+		Vector2(-8, 0),
+		Vector2(8, 0),
+		Vector2(fire_width, -fire_length),
+		Vector2(-fire_width, -fire_length)
+	])
+	
+
+func _process(delta):
+	damage_timer += delta
+
+	if damage_timer >= damage_interval:
+		damage_timer = 0.0
+		print("FIRE CHECK")
+
+		if civilization != null:
+			print("CALLING CIVILIZATION")
+			civilization.destroy_in_fire(self)
+		else:
+			print("NO CIVILIZATION ASSIGNED")
