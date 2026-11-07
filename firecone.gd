@@ -20,7 +20,8 @@ func _ready():
 
 func _process(delta):
 	damage_timer += delta
-
+	fire_width=25 * pow(1.1,global.upgrades["fireWidth"])
+	fire_length= 120 * pow(1.1, global.upgrade["fireLength"])
 	if damage_timer >= damage_interval:
 		damage_timer = 0.0
 		

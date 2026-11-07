@@ -1,5 +1,18 @@
 extends TileMapLayer
-
+var upgrade = {
+	"dragonSpeed": 1,
+	"turnSpeed": 1,
+	"fireLength": 1,
+	"fireWidth": 1,
+	"fireDamage":1,
+	"citySpawnChance":1,
+	"citySpawnInterval":1,
+	"castleSpawnChance":1,
+	"castleSpawnInterval":1,
+	"villageClustering":1,
+	"cityClustering":1,
+	"castleAttraction":1
+}
 # ATLAS SETTINGS
 const SOURCE_ID = 0
 
@@ -19,7 +32,7 @@ var game_over = false
 
 @export var village_spawn_interval = 2.0
 @export var city_spawn_interval = 8.0
-@export var castle_spawn_interval = 2.0
+@export var castle_spawn_interval = 25.0
 
 @export var fast_rebuild_time = 3.0
 @export var normal_rebuild_time = 15.0
@@ -46,6 +59,10 @@ var recently_rebuilt = []
 var village_timer = 0.0
 var city_timer = 0.0
 var castle_timer = 0.0
+
+var village_spawn_chance = 0.75
+var city_spawn_chance = 0.35
+var castle_spawn_chance = 0.20
 
 @export var grass_burn_chance: float = 0.35
 @export var grass_regrow_time: float = 2.0
@@ -343,21 +360,46 @@ func destroy_building(tile_pos: Vector2i):
 	
 func update_connections():
 	$ConnectionLine.queue_redraw()
+func apply_upgrades():
+	var upgrades = global.upgrade
+
+	#village_spawn_chance = min(1.0, 0.75 * pow(1.15, upgrades["villageSpawnChance"] - 1))
+	city_spawn_chance = min(1.0, 0.35 * pow(1.15, upgrades["citySpawnChance"] - 1))
+	castle_spawn_chance = min(1.0, 0.20 * pow(1.15, upgrades["castleSpawnChance"] - 1))
+
+	#village_spawn_interval = 2.0 * pow(0.9, upgrades["villageSpawnInterval"] - 1)
+	city_spawn_interval = 8.0 * pow(0.9, upgrades["citySpawnInterval"] - 1)
+	castle_spawn_interval = 25.0 * pow(0.9, upgrades["castleSpawnInterval"] - 1)
+
+	village_clustering_distance = 4.0 * pow(0.9, upgrades["villageClustering"] - 1)
+	city_spacing_distance = 8.0 * pow(0.9, upgrades["cityClustering"] - 1)
+	castle_attraction_distance = 6.0 * pow(1.1, upgrades["castleAttraction"] - 1)
+
+	guaranteed_destroy_distance = 32.0 * pow(1.1, upgrades["fireDamage"] - 1)
+	distant_building_destroy_chance = min(1.0, 0.25 * pow(1.1, upgrades["fireDamage"] - 1))
 func _process(delta):
 	if game_over:
 		return
+
 	village_timer += delta
 	city_timer += delta
 	castle_timer += delta
 
 	if village_timer >= village_spawn_interval:
 		village_timer = 0.0
-		attempt_spawn_village()
+
+		if randf() < village_spawn_chance:
+			apply_upgrades()
+			attempt_spawn_village()
 
 	if city_timer >= city_spawn_interval:
 		city_timer = 0.0
-		attempt_spawn_city()
+
+		if randf() < city_spawn_chance:
+			attempt_spawn_city()
 
 	if castle_timer >= castle_spawn_interval:
 		castle_timer = 0.0
-		attempt_spawn_castle()
+
+		if randf() < castle_spawn_chance:
+			attempt_spawn_castle()
