@@ -597,9 +597,7 @@ offset_top = 46.0
 offset_right = 273.0
 offset_bottom = 57.0
 
-
 [node name="Music" parent="." unique_id=993442736 instance=ExtResource("6_7mycd")]
-
 
 [connection signal="toggled" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon" to="." method="_on_dragon_toggled"]
 [connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/DragonSpeed/Purchase" to="." method="speedpurchase"]
@@ -614,4 +612,3 @@ offset_bottom = 57.0
 [connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/VillageClustering/Purchase" to="." method="villageclusteringpurchase"]
 [connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/CityClustering/Purchase" to="." method="cityclusteringpurchase"]
 [connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/CastleAttraction/Purchase" to="." method="castleattractionpurchase"]
-
