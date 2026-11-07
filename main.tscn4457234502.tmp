@@ -1,0 +1,242 @@
+[gd_scene format=3 uid="uid://dbipapmkjngp4"]
+
+[ext_resource type="Script" uid="uid://s7lyrglljvo" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://jreg8l5ssx6a" path="res://Button.png" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://ba4lhiknbatb1" path="res://moneybutton.png" id="2_h2yge"]
+
+[node name="main" type="Control" unique_id=1660209080]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0xm2m")
+
+[node name="background" type="ColorRect" parent="." unique_id=860306054]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.22959322, 0.22959325, 0.22959319, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=854279258]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="gamelayout" type="HBoxContainer" parent="MarginContainer" unique_id=2046741473]
+custom_minimum_size = Vector2(0, 65)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Panel" type="Panel" parent="MarginContainer/gamelayout" unique_id=1967739131]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MoneyLabel" type="Label" parent="MarginContainer/gamelayout/Panel" unique_id=663465721]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.01570776, 0.24841452, 1, 1)
+theme_override_font_sizes/font_size = 80
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="MarginContainer/gamelayout" unique_id=643335365]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel2" unique_id=676762365]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "idk two"
+horizontal_alignment = 1
+
+[node name="money" type="Button" parent="MarginContainer/gamelayout/Panel2" unique_id=876568454]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 49.0
+offset_right = 527.0
+offset_bottom = 497.0
+icon = ExtResource("2_h2yge")
+script = ExtResource("1_0xm2m")
+
+[node name="Panel3" type="Panel" parent="MarginContainer/gamelayout" unique_id=1637460014]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="MarginContainer/gamelayout/Panel3" unique_id=2134902223]
+layout_mode = 1
+anchors_preset = -1
+scale = Vector2(0.6, 0.15)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+action_mode = 0
+text = "BUTTON 1
+"
+icon = ExtResource("1_ig7tw")
+clip_text = true
+
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Button" unique_id=1668029936]
+layout_mode = 0
+offset_left = 6.6666565
+offset_top = 16.666748
+offset_right = 397.66666
+offset_bottom = 153.66675
+scale = Vector2(1.2, 3)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 75
+text = "TESTEST"
+
+[node name="Button2" type="Button" parent="MarginContainer/gamelayout/Panel3" unique_id=999645776]
+layout_mode = 1
+anchors_preset = -1
+offset_top = 89.0
+offset_right = 454.0
+offset_bottom = 537.0
+scale = Vector2(0.6, 0.15)
+action_mode = 0
+icon = ExtResource("1_ig7tw")
+clip_text = true
+
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Button2" unique_id=1184699947]
+layout_mode = 0
+offset_left = 6.6666565
+offset_top = 16.666748
+offset_right = 381.66666
+offset_bottom = 140.66675
+scale = Vector2(1.2, 3)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 75
+text = "Button 2"
+
+[node name="Button3" type="Button" parent="MarginContainer/gamelayout/Panel3" unique_id=687077863]
+layout_mode = 1
+anchors_preset = -1
+offset_top = 180.0
+offset_right = 454.0
+offset_bottom = 628.0
+scale = Vector2(0.6, 0.15)
+action_mode = 0
+icon = ExtResource("1_ig7tw")
+clip_text = true
+
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Button3" unique_id=1779831404]
+layout_mode = 0
+offset_left = 6.6666565
+offset_top = 16.666748
+offset_right = 381.66666
+offset_bottom = 140.66675
+scale = Vector2(1.2, 3)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 75
+text = "Button 3"
+
+[node name="Button4" type="Button" parent="MarginContainer/gamelayout/Panel3" unique_id=1964571725]
+layout_mode = 1
+anchors_preset = -1
+offset_top = 269.0
+offset_right = 454.0
+offset_bottom = 717.0
+scale = Vector2(0.6, 0.15)
+action_mode = 0
+icon = ExtResource("1_ig7tw")
+clip_text = true
+
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Button4" unique_id=1430563371]
+layout_mode = 0
+offset_left = 6.6666565
+offset_top = 16.666748
+offset_right = 381.66666
+offset_bottom = 140.66675
+scale = Vector2(1.2, 3)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 75
+text = "Button 4"
+
+[node name="Button5" type="Button" parent="MarginContainer/gamelayout/Panel3" unique_id=966047364]
+layout_mode = 1
+anchors_preset = -1
+offset_top = 353.0
+offset_right = 454.0
+offset_bottom = 801.0
+scale = Vector2(0.6, 0.15)
+action_mode = 0
+icon = ExtResource("1_ig7tw")
+clip_text = true
+
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Button5" unique_id=66807618]
+layout_mode = 0
+offset_left = 6.6666565
+offset_top = 16.666748
+offset_right = 381.66666
+offset_bottom = 140.66675
+scale = Vector2(1.2, 3)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 75
+text = "Button 4"
+
+[node name="Button6" type="Button" parent="MarginContainer/gamelayout/Panel3" unique_id=366708375]
+layout_mode = 1
+anchors_preset = -1
+offset_top = 434.00003
+offset_right = 454.0
+offset_bottom = 882.0
+scale = Vector2(0.6, 0.15)
+action_mode = 0
+icon = ExtResource("1_ig7tw")
+clip_text = true
+
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Button6" unique_id=2007245930]
+layout_mode = 0
+offset_left = 6.6666565
+offset_top = 16.666748
+offset_right = 381.66666
+offset_bottom = 140.66675
+scale = Vector2(1.2, 3)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 75
+text = "Button 4"
+
+[node name="Button7" type="Button" parent="MarginContainer/gamelayout/Panel3" unique_id=1226371377]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 1.0
+offset_top = 515.0
+offset_right = 455.0
+offset_bottom = 963.0
+scale = Vector2(0.6, 0.15)
+action_mode = 0
+icon = ExtResource("1_ig7tw")
+clip_text = true
+
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Button7" unique_id=1484672099]
+layout_mode = 0
+offset_left = 6.6666565
+offset_top = 16.666748
+offset_right = 381.66666
+offset_bottom = 140.66675
+scale = Vector2(1.2, 3)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 75
+text = "Button 4"
+
+[node name="please" type="Label" parent="MarginContainer" unique_id=384866609]
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/gamelayout/Panel2/money" to="." method="_on_money_pressed"]
+[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Button" to="." method="_Button1Press"]
+[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Button2" to="." method="_Button2Press"]
+[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Button3" to="." method="_Button3Press"]

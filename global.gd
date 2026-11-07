@@ -13,7 +13,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	timer -=delta
 	if timer <0:
-		print("mult = ",mult," value = ",value)
+		print("global mult = ",mult," value = ",value)
 		timer =1
 	pass
 
