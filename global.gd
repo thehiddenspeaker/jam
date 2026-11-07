@@ -29,14 +29,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	timer -=delta
 	if timer <0:
-		print(upgrade["dragonSpeed"])
 		timer =1
 	pass
 
 func villageDestroyed() -> void:
 	money += (mult*(value+1))
 	pass
-func townDestroyed() -> void:
+func grassDestroyed() -> void:
 	money += (mult*(value+10))
 	pass
 func cityDestroyed() -> void:
@@ -48,3 +47,6 @@ func castleDestroyed() -> void:
 	
 func parseUpgrades(upgradeToParse: Dictionary) -> void:
 	upgrade.merge(upgradeToParse,true)
+	
+func changeMoney(moneyToSpend) -> void:
+	money += moneyToSpend
