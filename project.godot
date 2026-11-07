@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="jam"
-run/main_scene="uid://dbipapmkjngp4"
+run/main_scene="uid://botroh41i1m8c"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
