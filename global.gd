@@ -14,6 +14,7 @@ var upgrade = {
 	"citySpawnInterval":1,
 	"castleSpawnChance":1,
 	"castleSpawnInterval":1,
+	"rebuildTime":1,
 	"villageClustering":1,
 	"cityClustering":1,
 	"castleAttraction":1
