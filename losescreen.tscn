@@ -1,15 +1,17 @@
 [gd_scene format=3 uid="uid://bmyj80a5nm3yo"]
 
 [ext_resource type="AudioStream" uid="uid://b71hgsw615edw" path="res://screamandlightning.mp3" id="1_n7u8t"]
-[ext_resource type="Texture2D" uid="uid://1j1fowivp5s4" path="res://New Piskel (4).png" id="2_ak1a4"]
+[ext_resource type="Texture2D" uid="uid://biemd5yp76hst" path="res://dragon.png" id="2_n7u8t"]
 
 [node name="Node2D" type="Node2D" unique_id=2025925907]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1214345490]
 stream = ExtResource("1_n7u8t")
+volume_db = -2.0
 autoplay = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1611641630]
-texture = ExtResource("2_ak1a4")
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("2_n7u8t")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=266318969]

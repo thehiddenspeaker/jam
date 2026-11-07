@@ -386,8 +386,8 @@ func apply_upgrades():
 	var upgrades = global.upgrade
 
 	#village_spawn_chance = min(1.0, 0.75 * pow(1.15, upgrades["villageSpawnChance"] - 1))
-	city_spawn_chance = min(1.0, 0.35 * pow(1.15, upgrades["citySpawnChance"] - 1))
-	castle_spawn_chance = min(1.0, 0.20 * pow(1.15, upgrades["castleSpawnChance"] - 1))
+	city_spawn_chance = min(1.0, 0.60 * pow(1, upgrades["citySpawnChance"] - 1))
+	castle_spawn_chance = min(1.0, 0.50 * pow(1, upgrades["castleSpawnChance"] - 1))
 
 
 	fast_rebuild_time = 3.0 * pow(1.15, upgrades["rebuildTime"])
@@ -401,8 +401,8 @@ func apply_upgrades():
 	city_spacing_distance = 8.0 * pow(0.9, upgrades["cityClustering"] - 1)
 	castle_attraction_distance = 6.0 * pow(1.1, upgrades["castleAttraction"] - 1)
 
-	guaranteed_destroy_distance = 32.0 * pow(1.1, upgrades["fireDamage"] - 1)
-	distant_building_destroy_chance = min(1.0, 0.25 * pow(1.1, upgrades["fireDamage"] - 1))
+	guaranteed_destroy_distance = 32.0 * pow(1.05, upgrades["fireDamage"] - 1)
+	distant_building_destroy_chance = min(1.0, 0.25 * pow(1.05, upgrades["fireDamage"] - 1))
 func _process(delta):
 	if game_over:
 		return

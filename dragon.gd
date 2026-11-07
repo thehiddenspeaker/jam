@@ -30,8 +30,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 
 	# Apply upgrades.
-	speed = 50 * pow(1.1, global.upgrade["dragonSpeed"])
-	turn_speed = 1.5 * pow(1.1, global.upgrade["turnSpeed"])
+	speed = 50 * pow(1.05, global.upgrade["dragonSpeed"])
+	turn_speed = 1.5 * pow(1.05, global.upgrade["turnSpeed"])
 
 	# Mouse steering.
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):

@@ -108,7 +108,9 @@ script = ExtResource("3_r6i2g")
 script = ExtResource("3_3jquc")
 
 [node name="dragon" type="CharacterBody2D" parent="." unique_id=1269554324]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_lq68o")
+segment_spacing = 32.0
 
 [node name="Head" type="Sprite2D" parent="dragon" unique_id=634654481]
 texture = ExtResource("7_53r57")
@@ -117,21 +119,27 @@ texture = ExtResource("7_53r57")
 
 [node name="firecone" type="Polygon2D" parent="dragon" unique_id=1682990108 node_paths=PackedStringArray("civilization")]
 position = Vector2(0, -11.2)
+scale = Vector2(0.7, 0.7)
 script = ExtResource("6_xtxsn")
 fire_length = 60.0
 civilization = NodePath("../../TileMapLayer")
 
 [node name="Body1" type="Sprite2D" parent="dragon" unique_id=1947707927]
 texture = ExtResource("9_orrs1")
+flip_v = true
 
 [node name="Body2" type="Sprite2D" parent="dragon" unique_id=1462803735]
 texture = ExtResource("9_orrs1")
+flip_v = true
 
 [node name="Body3" type="Sprite2D" parent="dragon" unique_id=1530716444]
 texture = ExtResource("9_orrs1")
+flip_v = true
 
 [node name="Tail" type="Sprite2D" parent="dragon" unique_id=368305967]
+rotation = 3.1415927
 texture = ExtResource("10_r3m0h")
+flip_v = true
 
 [node name="effects" type="Node2D" parent="." unique_id=1103000637]
 
