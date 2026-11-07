@@ -17,7 +17,7 @@ bg_color = Color(0, 1, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4whqn"]
 bg_color = Color(0.20871013, 0.20871016, 0.20871004, 1)
 
-[node name="main" type="Control" unique_id=1660209080 node_paths=PackedStringArray("DragonPanel", "FirePanel", "CivPanel")]
+[node name="main" type="Control" unique_id=1660209080 node_paths=PackedStringArray("DragonPanel", "FirePanel", "CivPanel", "dragonSpeed", "turnSpeed", "fireLength", "fireWidth", "fireDamage", "rebuild_time", "village_clustering", "city_clustering", "castleAttraction")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,6 +28,15 @@ script = ExtResource("1_0xm2m")
 DragonPanel = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel")
 FirePanel = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel")
 CivPanel = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel")
+dragonSpeed = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/Speed/Purchase")
+turnSpeed = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/TurnSpeed/Purchase")
+fireLength = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Length/Purchase")
+fireWidth = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Width/Purchase")
+fireDamage = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireDamage/Purchase")
+rebuild_time = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/RebuildTime/Purchase")
+village_clustering = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/VillageClustering/Purchase")
+city_clustering = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/CityClustering/Purchase")
+castleAttraction = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/CastleAttraction/Purchase")
 
 [node name="background" type="ColorRect" parent="." unique_id=860306054]
 layout_mode = 1
@@ -568,6 +577,7 @@ offset_right = 273.0
 offset_bottom = 57.0
 
 [connection signal="toggled" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon" to="." method="_on_dragon_toggled"]
+[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/Speed/Purchase" to="." method="speedpurchase"]
 [connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire" to="." method="_on_fire_pressed"]
 [connection signal="toggled" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire" to="." method="_on_fire_toggled"]
 [connection signal="toggled" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization" to="." method="_on_civilization_toggled"]

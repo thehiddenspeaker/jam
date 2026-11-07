@@ -21,9 +21,21 @@ var upgrade = {
 
 @onready var money_label: Label = $MarginContainer/gamelayout/Panel/MoneyLabel
 
+#panels
 @export var DragonPanel: Panel
 @export var FirePanel: Panel
 @export var CivPanel: Panel
+
+#buttons
+@export var dragonSpeed: Button
+@export var turnSpeed: Button
+@export var fireLength: Button
+@export var fireWidth: Button
+@export var fireDamage: Button
+@export var rebuild_time: Button
+@export var village_clustering: Button
+@export var city_clustering: Button
+@export var castleAttraction: Button
 
 
 
@@ -41,19 +53,6 @@ func _process(delta: float) -> void:
 	global.parseUpgrades(upgrade)
 	if money_label != null:
 		money_label.text = str(global.money)
-
-func _Button1Press() -> void:
-	upgrade["dragonSpeed"] +=1
-	print("button1speed pressed")
-	pass # Replace with function body.
-
-func _Button2Press() -> void:
-	upgrade["turnSpeed"] +=1
-	pass # Replace with function body.
-
-
-func _Button3Press() -> void:
-	pass # Replace with function body.
 
 func passUpgrades() -> Dictionary:
 	return upgrade
@@ -77,3 +76,30 @@ func _on_fire_toggled(toggled_on: bool) -> void:
 
 func _on_civilization_toggled(toggled_on: bool) -> void:
 	toggle_panel(CivPanel, toggled_on)
+
+
+func purchase(button) -> void:
+	
+	return
+
+func flash_red(button) -> void:
+	var tween := create_tween()
+	button.modulate = Color.RED
+	tween.tween_property(button, "modulate", Color.WHITE, 0.3)
+
+func speedpurchase() -> void:
+	var price =1
+	price = upgrade["dragonSpeed"]*10
+	if global.money - price > 0:
+		price = -price
+		global.changeMoney(price)
+		upgrade["dragonSpeed"]+=1
+	else:
+		print("broke")
+		flash_red(dragonSpeed)
+	pass 
+	
+	
+	
+	
+	
