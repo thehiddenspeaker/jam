@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://s7lyrglljvo" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://dyafnddg6ntqy" path="res://fire.png" id="2_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://dibdtahu3vlkw" path="res://civilization.png" id="3_lquwl"]
-[ext_resource type="Texture2D" uid="uid://d8kcax77d3x5" path="res://rebuildtime.png" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bgmvtemq4ww1n" path="res://burnscene.tscn" id="5_gameworld"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00t6f"]
@@ -18,7 +17,7 @@ bg_color = Color(0, 1, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4whqn"]
 bg_color = Color(0.20871013, 0.20871016, 0.20871004, 1)
 
-[node name="main" type="Control" unique_id=1660209080 node_paths=PackedStringArray("DragonPanel", "FirePanel", "CivPanel", "dragonSpeed", "turnSpeed", "fireLength", "fireWidth", "fireDamage", "rebuild_time", "village_clustering", "city_clustering", "castleAttraction")]
+[node name="main" type="Control" unique_id=1660209080 node_paths=PackedStringArray("DragonPanel", "FirePanel", "CivPanel", "DragonTab", "FireTab", "CivTab", "dragonSpeed", "turnSpeed", "fireLength", "fireWidth", "fireDamage", "rebuild_time", "village_clustering", "city_clustering", "castleAttraction")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,10 +28,13 @@ script = ExtResource("1_0xm2m")
 DragonPanel = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel")
 FirePanel = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel")
 CivPanel = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel")
-dragonSpeed = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/Speed/Purchase")
+DragonTab = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon")
+FireTab = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Fire")
+CivTab = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization")
+dragonSpeed = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/DragonSpeed/Purchase")
 turnSpeed = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/TurnSpeed/Purchase")
-fireLength = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Length/Purchase")
-fireWidth = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Width/Purchase")
+fireLength = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireLength/Purchase")
+fireWidth = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireWidth/Purchase")
 fireDamage = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireDamage/Purchase")
 rebuild_time = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/RebuildTime/Purchase")
 village_clustering = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/VillageClustering/Purchase")
@@ -131,14 +133,14 @@ offset_top = 570.0
 offset_right = 2740.0
 offset_bottom = 6159.9995
 
-[node name="Speed" type="Panel" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel" unique_id=427835378]
+[node name="DragonSpeed" type="Panel" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel" unique_id=427835378]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 20.0
 offset_right = 2740.0
 offset_bottom = 1019.99994
 
-[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/Speed" unique_id=365736453]
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/DragonSpeed" unique_id=365736453]
 layout_mode = 0
 offset_left = 29.999996
 offset_top = 9.999999
@@ -147,7 +149,7 @@ offset_bottom = 299.99994
 theme_override_font_sizes/font_size = 130
 text = "Speed"
 
-[node name="Price" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/Speed" unique_id=1783577250]
+[node name="Price" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/DragonSpeed" unique_id=1783577250]
 layout_mode = 0
 offset_left = 959.9999
 offset_right = 2590.0
@@ -155,7 +157,7 @@ offset_bottom = 289.99994
 theme_override_font_sizes/font_size = 130
 text = "link this to the price"
 
-[node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/Speed" unique_id=2114161751]
+[node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/DragonSpeed" unique_id=2114161751]
 layout_mode = 0
 offset_left = 89.99999
 offset_top = 279.99997
@@ -164,7 +166,7 @@ offset_bottom = 880.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_imxxh")
 
-[node name="Description" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/Speed" unique_id=319481917]
+[node name="Description" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/DragonSpeed" unique_id=319481917]
 layout_mode = 0
 offset_left = 739.9999
 offset_top = 289.99997
@@ -238,14 +240,14 @@ offset_top = 470.0
 offset_right = 1650.0
 offset_bottom = 6059.9995
 
-[node name="Length" type="Panel" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel" unique_id=1057364341]
+[node name="FireLength" type="Panel" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel" unique_id=1057364341]
 layout_mode = 0
 offset_left = 29.999996
 offset_top = 19.999998
 offset_right = 2760.0
 offset_bottom = 1019.99994
 
-[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Length" unique_id=1158612152]
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireLength" unique_id=1158612152]
 layout_mode = 0
 offset_left = 29.999996
 offset_top = 9.999999
@@ -254,7 +256,7 @@ offset_bottom = 299.99994
 theme_override_font_sizes/font_size = 130
 text = "Length"
 
-[node name="Price" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Length" unique_id=795979712]
+[node name="Price" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireLength" unique_id=795979712]
 layout_mode = 0
 offset_left = 959.9999
 offset_right = 2590.0
@@ -262,7 +264,7 @@ offset_bottom = 289.99994
 theme_override_font_sizes/font_size = 130
 text = "link this to the price"
 
-[node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Length" unique_id=2057336243]
+[node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireLength" unique_id=2057336243]
 layout_mode = 0
 offset_left = 89.99999
 offset_top = 279.99997
@@ -271,7 +273,7 @@ offset_bottom = 880.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_imxxh")
 
-[node name="Description" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Length" unique_id=908912536]
+[node name="Description" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireLength" unique_id=908912536]
 layout_mode = 0
 offset_left = 739.9999
 offset_top = 289.99997
@@ -283,14 +285,14 @@ text = "piss longer"
 autowrap_mode = 2
 clip_text = true
 
-[node name="Width" type="Panel" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel" unique_id=754889414]
+[node name="FireWidth" type="Panel" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel" unique_id=754889414]
 layout_mode = 0
 offset_left = 30.0
 offset_top = 1170.0
 offset_right = 2760.0
 offset_bottom = 2170.0
 
-[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Width" unique_id=1726746689]
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireWidth" unique_id=1726746689]
 layout_mode = 0
 offset_left = 29.999996
 offset_top = 9.999999
@@ -299,7 +301,7 @@ offset_bottom = 299.99994
 theme_override_font_sizes/font_size = 130
 text = "Width"
 
-[node name="Price" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Width" unique_id=497957261]
+[node name="Price" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireWidth" unique_id=497957261]
 layout_mode = 0
 offset_left = 959.9999
 offset_right = 2590.0
@@ -307,7 +309,7 @@ offset_bottom = 289.99994
 theme_override_font_sizes/font_size = 130
 text = "link this to the price"
 
-[node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Width" unique_id=805883407]
+[node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireWidth" unique_id=805883407]
 layout_mode = 0
 offset_left = 89.99999
 offset_top = 279.99997
@@ -316,7 +318,7 @@ offset_bottom = 880.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_imxxh")
 
-[node name="Description" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Width" unique_id=599237826]
+[node name="Description" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireWidth" unique_id=599237826]
 layout_mode = 0
 offset_left = 739.9999
 offset_top = 289.99997
@@ -578,7 +580,15 @@ offset_right = 273.0
 offset_bottom = 57.0
 
 [connection signal="toggled" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon" to="." method="_on_dragon_toggled"]
-[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/Speed/Purchase" to="." method="speedpurchase"]
+[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/DragonSpeed/Purchase" to="." method="speedpurchase"]
+[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/TurnSpeed/Purchase" to="." method="turnspeedpurchase"]
 [connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire" to="." method="_on_fire_pressed"]
 [connection signal="toggled" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire" to="." method="_on_fire_toggled"]
+[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireLength/Purchase" to="." method="firelengthpurchase"]
+[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireWidth/Purchase" to="." method="firewidthpurchase"]
+[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireDamage/Purchase" to="." method="firedamagepurchase"]
 [connection signal="toggled" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization" to="." method="_on_civilization_toggled"]
+[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/RebuildTime/Purchase" to="." method="rebuildtimepurchase"]
+[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/VillageClustering/Purchase" to="." method="villageclusteringpurchase"]
+[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/CityClustering/Purchase" to="." method="cityclusteringpurchase"]
+[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/CastleAttraction/Purchase" to="." method="castleattractionpurchase"]
