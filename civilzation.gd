@@ -388,7 +388,10 @@ func apply_upgrades():
 	#village_spawn_chance = min(1.0, 0.75 * pow(1.15, upgrades["villageSpawnChance"] - 1))
 	city_spawn_chance = min(1.0, 0.35 * pow(1.15, upgrades["citySpawnChance"] - 1))
 	castle_spawn_chance = min(1.0, 0.20 * pow(1.15, upgrades["castleSpawnChance"] - 1))
+
+
 	fast_rebuild_time = 3.0 * pow(1.15, upgrades["rebuildTime"])
+
 	normal_rebuild_time = 15.0 * pow(1.15, upgrades["rebuildTime"])
 	#village_spawn_interval = 2.0 * pow(0.9, upgrades["villageSpawnInterval"] - 1)
 	city_spawn_interval = 8.0 * pow(0.9, upgrades["citySpawnInterval"] - 1)

@@ -42,12 +42,24 @@ var upgrade = {
 @export var city_clustering: Button
 @export var castleAttraction: Button
 
+#prices
+@export var dragonSpeedPrice: Label
+@export var turnSpeedPrice: Label
+@export var fireLengthPrice: Label
+@export var fireWidthPrice: Label
+@export var fireDamagePrice: Label
+@export var rebuild_timePrice: Label
+@export var village_clusteringPrice: Label
+@export var city_clusteringPrice: Label
+@export var castleAttractionPrice: Label
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_setup_tabs()
 	_setup_upgrade_buttons()
+	return
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -138,26 +150,27 @@ func speedpurchase() -> void:
 	var price =1
 	price = upgrade["dragonSpeed"]*10
 	if global.money - price > 0:
+		dragonSpeedPrice.text = str(price+10)
 		price = -price
 		global.changeMoney(price)
 		upgrade["dragonSpeed"]+=1
 	else:
 		print("broke")
+		dragonSpeedPrice.text = str(price)
 		flash_red(dragonSpeed)
 	pass 
-	
-
 
 func turnspeedpurchase() -> void:
 	var price =1
 	price = upgrade["turnSpeed"]*10
 	if global.money - price > 0:
+		turnSpeedPrice.text = str(price+10)
 		price = -price
 		global.changeMoney(price)
 		upgrade["turnSpeed"]+=1
 	else:
 		print("broke")
-		flash_red(dragonSpeed)
+		flash_red(turnSpeed)
 	pass 
 
 
@@ -165,12 +178,13 @@ func firelengthpurchase() -> void:
 	var price =1
 	price = upgrade["fireLength"]*10
 	if global.money - price > 0:
+		fireLengthPrice.text = str(price+10)
 		price = -price
 		global.changeMoney(price)
 		upgrade["fireLength"]+=1
 	else:
 		print("broke")
-		flash_red(dragonSpeed)
+		flash_red(fireLength)
 	pass 
 
 
@@ -178,12 +192,13 @@ func firewidthpurchase() -> void:
 	var price =1
 	price = upgrade["fireWidth"]*10
 	if global.money - price > 0:
+		fireWidthPrice.text = str(price+10)
 		price = -price
 		global.changeMoney(price)
 		upgrade["fireWidth"]+=1
 	else:
 		print("broke")
-		flash_red(dragonSpeed)
+		flash_red(fireWidth)
 	pass 
 
 
@@ -191,12 +206,13 @@ func firedamagepurchase() -> void:
 	var price =1
 	price = upgrade["fireDamage"]*10
 	if global.money - price > 0:
+		fireDamagePrice.text = str(price+10)
 		price = -price
 		global.changeMoney(price)
 		upgrade["fireDamage"]+=1
 	else:
 		print("broke")
-		flash_red(dragonSpeed)
+		flash_red(fireDamage)
 	pass 
 
 
@@ -204,12 +220,13 @@ func rebuildtimepurchase() -> void:
 	var price =1
 	price = upgrade["rebuildTime"]*10
 	if global.money - price > 0:
+		rebuild_timePrice.text = str(price+10)
 		price = -price
 		global.changeMoney(price)
 		upgrade["rebuildTime"]+=1
 	else:
 		print("broke")
-		flash_red(dragonSpeed)
+		flash_red(rebuild_time)
 	pass 
 
 
@@ -217,12 +234,13 @@ func villageclusteringpurchase() -> void:
 	var price =1
 	price = upgrade["villageClustering"]*10
 	if global.money - price > 0:
+		village_clusteringPrice.text = str(price+10)
 		price = -price
 		global.changeMoney(price)
 		upgrade["villageClustering"]+=1
 	else:
 		print("broke")
-		flash_red(dragonSpeed)
+		flash_red(village_clustering)
 	pass 
 
 
@@ -230,22 +248,24 @@ func cityclusteringpurchase() -> void:
 	var price =1
 	price = upgrade["cityClustering"]*10
 	if global.money - price > 0:
+		city_clusteringPrice.text = str(price+10)
 		price = -price
 		global.changeMoney(price)
 		upgrade["cityClustering"]+=1
 	else:
 		print("broke")
-		flash_red(dragonSpeed)
+		flash_red(city_clustering)
 	pass 
 
 func castleattractionpurchase() -> void:
 	var price =1
 	price = upgrade["castleAttraction"]*10
 	if global.money - price > 0:
+		castleAttractionPrice.text = str(price+10)
 		price = -price
 		global.changeMoney(price)
 		upgrade["castleAttraction"]+=1
 	else:
 		print("broke")
-		flash_red(dragonSpeed)
+		flash_red(castleAttraction)
 	pass 

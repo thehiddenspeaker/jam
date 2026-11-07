@@ -18,7 +18,7 @@ bg_color = Color(0, 1, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4whqn"]
 bg_color = Color(0.20871013, 0.20871016, 0.20871004, 1)
 
-[node name="main" type="Control" unique_id=1660209080 node_paths=PackedStringArray("DragonPanel", "FirePanel", "CivPanel", "DragonTab", "FireTab", "CivTab", "dragonSpeed", "turnSpeed", "fireLength", "fireWidth", "fireDamage", "rebuild_time", "village_clustering", "city_clustering", "castleAttraction")]
+[node name="main" type="Control" unique_id=1660209080 node_paths=PackedStringArray("DragonPanel", "FirePanel", "CivPanel", "DragonTab", "FireTab", "CivTab", "dragonSpeed", "turnSpeed", "fireLength", "fireWidth", "fireDamage", "rebuild_time", "village_clustering", "city_clustering", "castleAttraction", "dragonSpeedPrice", "turnSpeedPrice", "fireLengthPrice", "fireWidthPrice", "fireDamagePrice", "rebuild_timePrice", "village_clusteringPrice", "city_clusteringPrice", "castleAttractionPrice")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,6 +41,15 @@ rebuild_time = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Civilizat
 village_clustering = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/VillageClustering/Purchase")
 city_clustering = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/CityClustering/Purchase")
 castleAttraction = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/CastleAttraction/Purchase")
+dragonSpeedPrice = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/DragonSpeed/Price")
+turnSpeedPrice = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/TurnSpeed/Price")
+fireLengthPrice = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireLength/Price")
+fireWidthPrice = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireWidth/Price")
+fireDamagePrice = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireDamage/Price")
+rebuild_timePrice = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/RebuildTime/Price")
+village_clusteringPrice = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/VillageClustering/Price")
+city_clusteringPrice = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/CityClustering/Price")
+castleAttractionPrice = NodePath("MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/CastleAttraction/Price")
 
 [node name="background" type="ColorRect" parent="." unique_id=860306054]
 layout_mode = 1
@@ -156,7 +165,8 @@ offset_left = 959.9999
 offset_right = 2590.0
 offset_bottom = 289.99994
 theme_override_font_sizes/font_size = 130
-text = "link this to the price"
+text = "10
+"
 
 [node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/DragonSpeed" unique_id=2114161751]
 layout_mode = 0
@@ -200,7 +210,7 @@ offset_left = 959.9999
 offset_right = 2590.0
 offset_bottom = 289.99994
 theme_override_font_sizes/font_size = 130
-text = "link this to the price"
+text = "10"
 
 [node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/TurnSpeed" unique_id=421349425]
 layout_mode = 0
@@ -263,7 +273,8 @@ offset_left = 959.9999
 offset_right = 2590.0
 offset_bottom = 289.99994
 theme_override_font_sizes/font_size = 130
-text = "link this to the price"
+text = "10
+"
 
 [node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireLength" unique_id=2057336243]
 layout_mode = 0
@@ -308,7 +319,8 @@ offset_left = 959.9999
 offset_right = 2590.0
 offset_bottom = 289.99994
 theme_override_font_sizes/font_size = 130
-text = "link this to the price"
+text = "10
+"
 
 [node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireWidth" unique_id=805883407]
 layout_mode = 0
@@ -353,7 +365,8 @@ offset_left = 959.9999
 offset_right = 2590.0
 offset_bottom = 289.99994
 theme_override_font_sizes/font_size = 130
-text = "link this to the price"
+text = "10
+"
 
 [node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireDamage" unique_id=2040919755]
 layout_mode = 0
@@ -416,7 +429,8 @@ offset_left = 959.9999
 offset_right = 2590.0
 offset_bottom = 289.99994
 theme_override_font_sizes/font_size = 130
-text = "link this to the price"
+text = "10
+"
 
 [node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/RebuildTime" unique_id=906943543]
 layout_mode = 0
@@ -461,7 +475,8 @@ offset_left = 959.9999
 offset_right = 2590.0
 offset_bottom = 289.99994
 theme_override_font_sizes/font_size = 130
-text = "link this to the price"
+text = "10
+"
 
 [node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/VillageClustering" unique_id=297226033]
 layout_mode = 0
@@ -506,7 +521,8 @@ offset_left = 959.9999
 offset_right = 2590.0
 offset_bottom = 289.99994
 theme_override_font_sizes/font_size = 130
-text = "link this to the price"
+text = "10
+"
 
 [node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/CityClustering" unique_id=436128503]
 layout_mode = 0
@@ -551,7 +567,8 @@ offset_left = 959.9999
 offset_right = 2590.0
 offset_bottom = 289.99994
 theme_override_font_sizes/font_size = 130
-text = "link this to the price"
+text = "10
+"
 
 [node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization/Panel/CastleAttraction" unique_id=2125061678]
 layout_mode = 0
