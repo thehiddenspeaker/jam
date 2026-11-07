@@ -12,14 +12,14 @@ const BURNT_GRASS = Vector2i(2, 0)
 
 # WORLD SETTINGS
 const WORLD_SIZE = Vector2i(32, 32)
-
+var game_over = false
 # CIVILIZATION SETTINGS
-@export var villages_can_become_cities = false
-@export var cities_can_become_castles = false
+@export var villages_can_become_cities = true
+@export var cities_can_become_castles = true
 
 @export var village_spawn_interval = 2.0
 @export var city_spawn_interval = 8.0
-@export var castle_spawn_interval = 30.0
+@export var castle_spawn_interval = 2.0
 
 @export var fast_rebuild_time = 3.0
 @export var normal_rebuild_time = 15.0
@@ -29,6 +29,7 @@ const WORLD_SIZE = Vector2i(32, 32)
 @export var castle_attraction_distance = 6.0
 @export var guaranteed_destroy_distance: float = 32.0
 @export var distant_building_destroy_chance: float = 0.25
+@export var minimum_castle_distance: float = 10.0
 # SPAWNING SETTINGS
 @export var random_village_chance = 0.1
 @export var village_nearby_distance = 4.0
@@ -83,7 +84,6 @@ func get_atlas_for_kind(kind: String) -> Vector2i:
 
 	return GRASS
 
-
 func can_place_building(position: Vector2i) -> bool:
 	if position.x < 0 or position.y < 0:
 		return false
@@ -107,6 +107,7 @@ func register_building(position: Vector2i, kind: String):
 	}
 
 	set_cell(position, SOURCE_ID, get_atlas_for_kind(kind))
+	update_connections()
 func attempt_spawn_village():
 	for i in range(100):
 		var position = Vector2i(
@@ -161,48 +162,113 @@ func attempt_spawn_city():
 			continue
 
 		var nearby_villages = 0
-		var too_close_to_city = false
+		var nearest_city_distance = 999.0
+		var aligned_with_city = false
 
 		for other_location in buildings:
-			var distance = Vector2(location).distance_to(Vector2(other_location))
 			var kind = buildings[other_location]["kind"]
+			var distance = Vector2(location).distance_to(Vector2(other_location))
 
 			if kind == "village" and distance <= village_clustering_distance:
 				nearby_villages += 1
 
-			if kind == "city" and distance < city_spacing_distance:
-				too_close_to_city = true
+			if kind == "city":
+				nearest_city_distance = min(nearest_city_distance, distance)
 
-		if nearby_villages >= 3 and not too_close_to_city:
-			buildings[location]["kind"] = "city"
-			set_cell(location, SOURCE_ID, CITY)
+				var difference = location - other_location
+
+				if abs(difference.x) <= 1 or abs(difference.y) <= 1:
+					aligned_with_city = true
+
+		if nearby_villages < 3:
+			continue
+
+		# First city has no spacing restrictions
+		if nearest_city_distance == 999.0:
+			register_city(location)
 			return
+
+		# Cities can form close clusters or distant chains
+		var close_to_city = nearest_city_distance <= 2.0
+		var far_from_city = nearest_city_distance >= 8.0
+
+		if close_to_city or (far_from_city and aligned_with_city):
+			register_city(location)
+			return
+
+
+func register_city(location: Vector2i):
+	buildings[location]["kind"] = "city"
+	set_cell(location, SOURCE_ID, CITY)
+	update_connections()
 func attempt_spawn_castle():
 	if not cities_can_become_castles:
 		return
 
-	for location in buildings:
-		if buildings[location]["kind"] != "city":
+	for city_location in buildings:
+		if buildings[city_location]["kind"] != "city":
 			continue
 
-		var nearby_villages = 0
-		var too_close_to_castle = false
+		for i in range(50):
+			var offset = Vector2i(
+				randi_range(-6, 6),
+				randi_range(-6, 6)
+			)
 
-		for other_location in buildings:
-			var distance = Vector2(location).distance_to(Vector2(other_location))
-			var kind = buildings[other_location]["kind"]
+			var castle_position = city_location + offset
+			var distance = Vector2(offset).length()
 
-			if kind == "village" and distance <= castle_attraction_distance:
-				nearby_villages += 1
+			if distance < 3.0 or distance > 6.0:
+				continue
 
-			if kind == "castle" and distance < city_spacing_distance:
-				too_close_to_castle = true
+			if not can_place_building(castle_position):
+				continue
 
-		if nearby_villages >= 2 and not too_close_to_castle:
-			buildings[location]["kind"] = "castle"
-			set_cell(location, SOURCE_ID, CASTLE)
+			var atlas = get_cell_atlas_coords(castle_position)
+
+			# Only build on grass
+			if get_cell_source_id(castle_position) != SOURCE_ID:
+				continue
+
+			if atlas.x > 1 or atlas.y > 1:
+				continue
+
+			# Keep castles separated
+			# Keep castles separated
+			var too_close = false
+
+			for location in buildings:
+				if buildings[location]["kind"] != "castle":
+					continue
+
+				var castle_distance = Vector2(castle_position).distance_to(Vector2(location))
+
+				if castle_distance < minimum_castle_distance:
+					too_close = true
+					break
+
+			if too_close:
+				continue
+
+			register_building(castle_position, "castle")
+			check_game_over()
 			return
 
+
+func check_game_over():
+	if game_over:
+		return
+
+	var castle_count = 0
+
+	for location in buildings:
+		if buildings[location]["kind"] == "castle":
+			castle_count += 1
+
+	if castle_count >= 5:
+		game_over = true
+		print("GAME OVER! FIVE CASTLES HAVE BEEN BUILT!")
+		get_tree().paused = true
 func destroy_in_fire(fire):
 	var fire_steps = 20
 
@@ -238,6 +304,8 @@ func destroy_in_fire(fire):
 
 		# Destroy villages and cities
 		elif  atlas == CITY or atlas == CASTLE:
+			queue_redraw()
+			print("queued redraw from destruction")
 			var building_distance = world_position.distance_to(fire.global_position)
 
 			if building_distance <= guaranteed_destroy_distance:
@@ -271,7 +339,13 @@ func destroy_building(tile_pos: Vector2i):
 
 	# Remember that a building was destroyed
 	destroyed_sites[tile_pos] = building
+	update_connections()
+	
+func update_connections():
+	$ConnectionLine.queue_redraw()
 func _process(delta):
+	if game_over:
+		return
 	village_timer += delta
 	city_timer += delta
 	castle_timer += delta
