@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://s7lyrglljvo" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://jreg8l5ssx6a" path="res://Button.png" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bgmvtemq4ww1n" path="res://burnscene.tscn" id="2_h2yge"]
 
 [node name="main" type="Control" unique_id=1660209080]
 layout_mode = 3
@@ -56,12 +57,21 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel2" unique_id=676762365]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "idk two"
-horizontal_alignment = 1
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/gamelayout/Panel2" unique_id=1037155160]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/gamelayout/Panel2/SubViewportContainer" unique_id=732259785]
+handle_input_locally = false
+size = Vector2i(548, 616)
+render_target_update_mode = 4
+
+[node name="burnscene" parent="MarginContainer/gamelayout/Panel2/SubViewportContainer/SubViewport" unique_id=843521467 instance=ExtResource("2_h2yge")]
 
 [node name="Panel3" type="Panel" parent="MarginContainer/gamelayout" unique_id=1637460014]
 layout_mode = 2
