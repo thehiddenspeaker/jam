@@ -22,6 +22,12 @@ func _process(delta):
 	damage_timer += delta
 	fire_width=25 * pow(1.1,global.upgrade["fireWidth"])
 	fire_length= 120 * pow(1.1, global.upgrade["fireLength"])
+	polygon = PackedVector2Array([
+		Vector2(-8, 0),
+		Vector2(8, 0),
+		Vector2(fire_width, -fire_length),
+		Vector2(-fire_width, -fire_length)
+	])
 	if damage_timer >= damage_interval:
 		damage_timer = 0.0
 		
