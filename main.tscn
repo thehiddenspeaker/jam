@@ -1,8 +1,21 @@
 [gd_scene format=3 uid="uid://dbipapmkjngp4"]
 
 [ext_resource type="Script" uid="uid://s7lyrglljvo" path="res://main.gd" id="1_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://jreg8l5ssx6a" path="res://Button.png" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://bgmvtemq4ww1n" path="res://burnscene.tscn" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://dyafnddg6ntqy" path="res://fire.png" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://dibdtahu3vlkw" path="res://civilization.png" id="3_lquwl"]
+[ext_resource type="Texture2D" uid="uid://d8kcax77d3x5" path="res://rebuildtime.png" id="4_7mycd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00t6f"]
+bg_color = Color(0, 0, 1, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_272bh"]
+load_path = "res://.godot/imported/dragon.png-cd3ff3eaa8e7e24c15781ff6b9940064.ctex"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_imxxh"]
+bg_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4whqn"]
+bg_color = Color(0.20871013, 0.20871016, 0.20871004, 1)
 
 [node name="main" type="Control" unique_id=1660209080]
 layout_mode = 3
@@ -77,162 +90,297 @@ render_target_update_mode = 4
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="MarginContainer/gamelayout/Panel3" unique_id=2134902223]
-layout_mode = 1
-anchors_preset = -1
-scale = Vector2(0.6, 0.15)
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-action_mode = 0
-text = "BUTTON 1
-"
-icon = ExtResource("1_ig7tw")
-clip_text = true
+[node name="Node" type="Node" parent="MarginContainer/gamelayout/Panel3" unique_id=802737944]
 
-[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Button" unique_id=1668029936]
+[node name="Panel2" type="Panel" parent="MarginContainer/gamelayout/Panel3/Node" unique_id=182445344]
+offset_left = 862.0
+offset_top = 16.0
+offset_right = 1134.0
+offset_bottom = 62.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_00t6f")
+
+[node name="Dragon" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2" unique_id=1956567729]
 layout_mode = 0
-offset_left = 6.6666565
-offset_top = 16.666748
-offset_right = 397.66666
-offset_bottom = 153.66675
-scale = Vector2(1.2, 3)
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 75
-text = "TESTEST"
-
-[node name="Button2" type="Button" parent="MarginContainer/gamelayout/Panel3" unique_id=999645776]
-layout_mode = 1
-anchors_preset = -1
-offset_top = 89.0
 offset_right = 454.0
-offset_bottom = 537.0
-scale = Vector2(0.6, 0.15)
-action_mode = 0
-icon = ExtResource("1_ig7tw")
+offset_bottom = 448.0
+scale = Vector2(0.1, 0.1)
+icon = SubResource("CompressedTexture2D_272bh")
+
+[node name="Panel" type="Panel" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon" unique_id=470941526]
+layout_mode = 0
+offset_top = 570.0
+offset_right = 2740.0
+offset_bottom = 6159.9995
+
+[node name="Speed" type="Panel" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel" unique_id=427835378]
+visible = false
+layout_mode = 0
+offset_left = 29.999996
+offset_top = 19.999998
+offset_right = 2760.0
+offset_bottom = 1019.99994
+
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/Speed" unique_id=365736453]
+layout_mode = 0
+offset_left = 29.999996
+offset_top = 9.999999
+offset_right = 930.0
+offset_bottom = 299.99994
+theme_override_font_sizes/font_size = 130
+text = "Speed"
+
+[node name="Price" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/Speed" unique_id=1783577250]
+layout_mode = 0
+offset_left = 959.9999
+offset_right = 2590.0
+offset_bottom = 289.99994
+theme_override_font_sizes/font_size = 130
+text = "link this to the price"
+
+[node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/Speed" unique_id=2114161751]
+layout_mode = 0
+offset_left = 89.99999
+offset_top = 279.99997
+offset_right = 700.0
+offset_bottom = 880.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_imxxh")
+
+[node name="Description" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/Speed" unique_id=319481917]
+layout_mode = 0
+offset_left = 739.9999
+offset_top = 289.99997
+offset_right = 2590.0
+offset_bottom = 890.0
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_4whqn")
+text = "cover yoursel in oil so you go faster you moron"
+autowrap_mode = 2
 clip_text = true
 
-[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Button2" unique_id=1184699947]
+[node name="TurnSpeed" type="Panel" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel" unique_id=687359503]
+visible = false
 layout_mode = 0
-offset_left = 6.6666565
-offset_top = 16.666748
-offset_right = 381.66666
-offset_bottom = 140.66675
-scale = Vector2(1.2, 3)
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 75
-text = "Button 2"
+offset_left = 30.0
+offset_top = 1170.0
+offset_right = 2760.0
+offset_bottom = 2170.0
 
-[node name="Button3" type="Button" parent="MarginContainer/gamelayout/Panel3" unique_id=687077863]
-layout_mode = 1
-anchors_preset = -1
-offset_top = 180.0
-offset_right = 454.0
-offset_bottom = 628.0
-scale = Vector2(0.6, 0.15)
-action_mode = 0
-icon = ExtResource("1_ig7tw")
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/TurnSpeed" unique_id=633345445]
+layout_mode = 0
+offset_left = 29.999996
+offset_top = 9.999999
+offset_right = 930.0
+offset_bottom = 299.99994
+theme_override_font_sizes/font_size = 130
+text = "TurnSpeed"
+
+[node name="Price" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/TurnSpeed" unique_id=1960793861]
+layout_mode = 0
+offset_left = 959.9999
+offset_right = 2590.0
+offset_bottom = 289.99994
+theme_override_font_sizes/font_size = 130
+text = "link this to the price"
+
+[node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/TurnSpeed" unique_id=792255508]
+layout_mode = 0
+offset_left = 89.99999
+offset_top = 279.99997
+offset_right = 700.0
+offset_bottom = 880.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_imxxh")
+
+[node name="Description" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon/Panel/TurnSpeed" unique_id=391854861]
+layout_mode = 0
+offset_left = 739.9999
+offset_top = 289.99997
+offset_right = 2590.0
+offset_bottom = 890.0
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_4whqn")
+text = "break your neck, incrementally!"
+autowrap_mode = 2
 clip_text = true
 
-[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Button3" unique_id=1779831404]
+[node name="Fire" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2" unique_id=1459631006]
 layout_mode = 0
-offset_left = 6.6666565
-offset_top = 16.666748
-offset_right = 381.66666
-offset_bottom = 140.66675
-scale = Vector2(1.2, 3)
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 75
-text = "Button 3"
+offset_left = 68.0
+offset_right = 136.0
+offset_bottom = 46.0
+scale = Vector2(0.1, 0.1)
+icon = ExtResource("2_1bvp3")
 
-[node name="Button4" type="Button" parent="MarginContainer/gamelayout/Panel3" unique_id=1964571725]
-layout_mode = 1
-anchors_preset = -1
-offset_top = 269.0
-offset_right = 454.0
-offset_bottom = 717.0
-scale = Vector2(0.6, 0.15)
-action_mode = 0
-icon = ExtResource("1_ig7tw")
+[node name="Panel" type="Panel" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire" unique_id=2065159809]
+layout_mode = 0
+offset_left = -689.99994
+offset_top = 470.0
+offset_right = 2050.0
+offset_bottom = 6059.9995
+
+[node name="Length" type="Panel" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel" unique_id=1057364341]
+layout_mode = 0
+offset_left = 29.999996
+offset_top = 19.999998
+offset_right = 2760.0
+offset_bottom = 1019.99994
+
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Length" unique_id=1158612152]
+layout_mode = 0
+offset_left = 29.999996
+offset_top = 9.999999
+offset_right = 930.0
+offset_bottom = 299.99994
+theme_override_font_sizes/font_size = 130
+text = "Length"
+
+[node name="Price" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Length" unique_id=795979712]
+layout_mode = 0
+offset_left = 959.9999
+offset_right = 2590.0
+offset_bottom = 289.99994
+theme_override_font_sizes/font_size = 130
+text = "link this to the price"
+
+[node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Length" unique_id=2057336243]
+layout_mode = 0
+offset_left = 89.99999
+offset_top = 279.99997
+offset_right = 700.0
+offset_bottom = 880.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_imxxh")
+
+[node name="Description" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Length" unique_id=908912536]
+layout_mode = 0
+offset_left = 739.9999
+offset_top = 289.99997
+offset_right = 2590.0
+offset_bottom = 890.0
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_4whqn")
+text = "piss longer"
+autowrap_mode = 2
 clip_text = true
 
-[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Button4" unique_id=1430563371]
+[node name="Width" type="Panel" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel" unique_id=754889414]
 layout_mode = 0
-offset_left = 6.6666565
-offset_top = 16.666748
-offset_right = 381.66666
-offset_bottom = 140.66675
-scale = Vector2(1.2, 3)
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 75
-text = "Button 4"
+offset_left = 30.0
+offset_top = 1170.0
+offset_right = 2760.0
+offset_bottom = 2170.0
 
-[node name="Button5" type="Button" parent="MarginContainer/gamelayout/Panel3" unique_id=966047364]
-layout_mode = 1
-anchors_preset = -1
-offset_top = 353.0
-offset_right = 454.0
-offset_bottom = 801.0
-scale = Vector2(0.6, 0.15)
-action_mode = 0
-icon = ExtResource("1_ig7tw")
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Width" unique_id=1726746689]
+layout_mode = 0
+offset_left = 29.999996
+offset_top = 9.999999
+offset_right = 930.0
+offset_bottom = 299.99994
+theme_override_font_sizes/font_size = 130
+text = "Width"
+
+[node name="Price" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Width" unique_id=497957261]
+layout_mode = 0
+offset_left = 959.9999
+offset_right = 2590.0
+offset_bottom = 289.99994
+theme_override_font_sizes/font_size = 130
+text = "link this to the price"
+
+[node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Width" unique_id=805883407]
+layout_mode = 0
+offset_left = 89.99999
+offset_top = 279.99997
+offset_right = 700.0
+offset_bottom = 880.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_imxxh")
+
+[node name="Description" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/Width" unique_id=599237826]
+layout_mode = 0
+offset_left = 739.9999
+offset_top = 289.99997
+offset_right = 2590.0
+offset_bottom = 890.0
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_4whqn")
+text = "piss wider"
+autowrap_mode = 2
 clip_text = true
 
-[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Button5" unique_id=66807618]
+[node name="FireDamage" type="Panel" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel" unique_id=658484356]
 layout_mode = 0
-offset_left = 6.6666565
-offset_top = 16.666748
-offset_right = 381.66666
-offset_bottom = 140.66675
-scale = Vector2(1.2, 3)
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 75
-text = "Button 4"
+offset_left = 30.0
+offset_top = 2380.0
+offset_right = 2760.0
+offset_bottom = 3380.0
 
-[node name="Button6" type="Button" parent="MarginContainer/gamelayout/Panel3" unique_id=366708375]
-layout_mode = 1
-anchors_preset = -1
-offset_top = 434.00003
-offset_right = 454.0
-offset_bottom = 882.0
-scale = Vector2(0.6, 0.15)
-action_mode = 0
-icon = ExtResource("1_ig7tw")
+[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireDamage" unique_id=1954798988]
+layout_mode = 0
+offset_left = 29.999996
+offset_top = 9.999999
+offset_right = 930.0
+offset_bottom = 299.99994
+theme_override_font_sizes/font_size = 130
+text = "Fire Damage"
+
+[node name="Price" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireDamage" unique_id=675027243]
+layout_mode = 0
+offset_left = 959.9999
+offset_right = 2590.0
+offset_bottom = 289.99994
+theme_override_font_sizes/font_size = 130
+text = "link this to the price"
+
+[node name="Purchase" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireDamage" unique_id=2040919755]
+layout_mode = 0
+offset_left = 89.99999
+offset_top = 279.99997
+offset_right = 700.0
+offset_bottom = 880.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_imxxh")
+
+[node name="Description" type="Label" parent="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire/Panel/FireDamage" unique_id=435827612]
+layout_mode = 0
+offset_left = 739.9999
+offset_top = 289.99997
+offset_right = 2590.0
+offset_bottom = 890.0
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_4whqn")
+text = "piss deadlier"
+autowrap_mode = 2
 clip_text = true
 
-[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Button6" unique_id=2007245930]
+[node name="Civilization" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2" unique_id=456079789]
 layout_mode = 0
-offset_left = 6.6666565
-offset_top = 16.666748
-offset_right = 381.66666
-offset_bottom = 140.66675
-scale = Vector2(1.2, 3)
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 75
-text = "Button 4"
+offset_left = 136.0
+offset_right = 204.0
+offset_bottom = 46.0
+scale = Vector2(0.1, 0.1)
+icon = ExtResource("3_lquwl")
 
-[node name="Button7" type="Button" parent="MarginContainer/gamelayout/Panel3" unique_id=1226371377]
-layout_mode = 1
-anchors_preset = -1
-offset_left = 1.0
-offset_top = 515.0
-offset_right = 455.0
-offset_bottom = 963.0
-scale = Vector2(0.6, 0.15)
-action_mode = 0
-icon = ExtResource("1_ig7tw")
-clip_text = true
-
-[node name="Label" type="Label" parent="MarginContainer/gamelayout/Panel3/Button7" unique_id=1484672099]
+[node name="Rebuild Time" type="Button" parent="MarginContainer/gamelayout/Panel3/Node/Panel2" unique_id=27868428]
 layout_mode = 0
-offset_left = 6.6666565
-offset_top = 16.666748
-offset_right = 381.66666
-offset_bottom = 140.66675
-scale = Vector2(1.2, 3)
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 75
-text = "Button 4"
+offset_left = 204.0
+offset_right = 272.0
+offset_bottom = 46.0
+scale = Vector2(0.1, 0.1)
+icon = ExtResource("4_7mycd")
 
-[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Button" to="." method="_Button1Press"]
-[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Button2" to="." method="_Button2Press"]
-[connection signal="pressed" from="MarginContainer/gamelayout/Panel3/Button3" to="." method="_Button3Press"]
+[node name="Panel" type="Panel" parent="MarginContainer/gamelayout/Panel3" unique_id=23973793]
+layout_mode = 0
+offset_top = 46.0
+offset_right = 273.0
+offset_bottom = 57.0
+
+[connection signal="button_down" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon" to="." method="dragonDown"]
+[connection signal="button_up" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon" to="." method="dragonUp"]
+[connection signal="button_down" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire" to="." method="fireDown"]
+[connection signal="button_up" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Fire" to="." method="fireUp"]
+[connection signal="button_down" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization" to="." method="civilizationDown"]
+[connection signal="button_up" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Civilization" to="." method="civilizationUp"]
+[connection signal="button_down" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Rebuild Time" to="." method="rebuildDown"]
+[connection signal="button_up" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Rebuild Time" to="." method="rebuildUp"]

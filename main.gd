@@ -13,6 +13,7 @@ var upgrade = {
 	"citySpawnInterval":1,
 	"castleSpawnChance":1,
 	"castleSpawnInterval":1,
+	"rebuildTime":1,
 	"villageClustering":1,
 	"cityClustering":1,
 	"castleAttraction":1
@@ -49,3 +50,31 @@ func _Button3Press() -> void:
 
 func passUpgrades() -> Dictionary:
 	return upgrade
+	
+
+func dragonDown() -> void:
+	pass # Replace with function body.
+
+func dragonUp() -> void:
+	pass # Replace with function body.
+
+
+func fireDown() -> void:
+	pass # Replace with function body.
+
+func fireUp() -> void:
+	pass # Replace with function body.
+
+
+func civilizationDown() -> void:
+	pass # Replace with function body.
+
+
+func civilizationUp() -> void:
+	pass # Replace with function body.
+
+func rebuildDown() -> void:
+	pass # Replace with function body.
+
+func rebuildUp() -> void:
+	pass # Replace with function body.
