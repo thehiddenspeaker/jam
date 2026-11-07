@@ -2,6 +2,22 @@ extends Control
 var mult = 1
 var value = 1
 var timer =1 
+
+var upgrade = {
+	"dragonSpeed": 1,
+	"turnSpeed": 1,
+	"fireLength": 1,
+	"fireWidth": 1,
+	"fireDamage":1,
+	"citySpawnChance":1,
+	"citySpawnInterval":1,
+	"castleSpawnChance":1,
+	"castleSpawnInterval":1,
+	"villageClustering":1,
+	"cityClustering":1,
+	"castleAttraction":1
+}
+
 @onready var money_label: Label = $MarginContainer/gamelayout/Panel/MoneyLabel
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,31 +28,24 @@ func _process(delta: float) -> void:
 	
 	timer -=delta
 	if timer <0:
-		print("main mult = ",mult," value = ",value)
 		timer =1
 		
-	global.parseUpgrades(passUpgrades())
+	global.parseUpgrades(upgrade)
 	if money_label != null:
 		money_label.text = str(global.money)
 
 func _Button1Press() -> void:
+	upgrade["dragonSpeed"] +=1
+	print("button1speed pressed")
 	pass # Replace with function body.
 
 func _Button2Press() -> void:
-	value+=1
-	print(value)
+	upgrade["turnSpeed"] +=1
 	pass # Replace with function body.
 
 
 func _Button3Press() -> void:
-	mult+=1
-	print(mult)
 	pass # Replace with function body.
 
-func passUpgrades() -> Array[int]:
-	return [mult,value]
-
-
-func _on_money_pressed() -> void:
-	global.villageDestroyed()
-	pass # Replace with function body.
+func passUpgrades() -> Dictionary:
+	return upgrade
