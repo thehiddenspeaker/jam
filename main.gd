@@ -20,6 +20,13 @@ var upgrade = {
 }
 
 @onready var money_label: Label = $MarginContainer/gamelayout/Panel/MoneyLabel
+
+@export var DragonPanel: Panel
+@export var FirePanel: Panel
+@export var CivPanel: Panel
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -51,30 +58,22 @@ func _Button3Press() -> void:
 func passUpgrades() -> Dictionary:
 	return upgrade
 	
+func toggle_panel(panel: Panel, is_toggled: bool) -> void:
+	if not panel: 
+		print("nopanelerror")
+		return
+	if is_toggled:
+		panel.process_mode = Node.PROCESS_MODE_DISABLED
+		panel.hide()
+	else:
+		panel.process_mode = Node.PROCESS_MODE_INHERIT
+		panel.show()
 
-func dragonDown() -> void:
-	pass # Replace with function body.
+func _on_dragon_toggled(toggled_on: bool) -> void:
+	toggle_panel(DragonPanel, toggled_on)
 
-func dragonUp() -> void:
-	pass # Replace with function body.
+func _on_fire_toggled(toggled_on: bool) -> void:
+	toggle_panel(FirePanel, toggled_on)
 
-
-func fireDown() -> void:
-	pass # Replace with function body.
-
-func fireUp() -> void:
-	pass # Replace with function body.
-
-
-func civilizationDown() -> void:
-	pass # Replace with function body.
-
-
-func civilizationUp() -> void:
-	pass # Replace with function body.
-
-func rebuildDown() -> void:
-	pass # Replace with function body.
-
-func rebuildUp() -> void:
-	pass # Replace with function body.
+func _on_civilization_toggled(toggled_on: bool) -> void:
+	toggle_panel(CivPanel, toggled_on)
