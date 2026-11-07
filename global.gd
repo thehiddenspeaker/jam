@@ -3,7 +3,7 @@ var money = 100
 var mult = 1
 var value = 1
 var timer = 1
-
+var lose = false
 var upgrade = {
 	"dragonSpeed": 1,
 	"turnSpeed": 1,
@@ -33,18 +33,19 @@ func _process(delta: float) -> void:
 	pass
 
 func villageDestroyed() -> void:
-	money += (mult*(value+1))
-	pass
-func grassDestroyed() -> void:
 	money += (mult*(value+10))
 	pass
+func grassDestroyed() -> void:
+	money += (mult*(value+1))
+	pass
 func cityDestroyed() -> void:
-	money += (mult*(value+100))
+	money += (mult*(value+50))
 	pass
 func castleDestroyed() -> void:
-	money += (mult*(value+1000))
+	money += (mult*(value+500))
 	pass
-	
+func loseState():
+	lose = true
 func parseUpgrades(upgradeToParse: Dictionary) -> void:
 	upgrade.merge(upgradeToParse,true)
 	
