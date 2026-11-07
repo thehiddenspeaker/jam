@@ -4,11 +4,13 @@
 [ext_resource type="Script" uid="uid://cpti6en772h0p" path="res://dragon.gd" id="1_lq68o"]
 [ext_resource type="Texture2D" uid="uid://1j1fowivp5s4" path="res://New Piskel (4).png" id="1_tx4pt"]
 [ext_resource type="Texture2D" uid="uid://tyccfjax44rm" path="res://New Piskel (3).png" id="1_xtxsn"]
-[ext_resource type="Texture2D" uid="uid://dvfksrtp27st0" path="res://New Piskel (1).png" id="2_hkqo0"]
 [ext_resource type="Script" uid="uid://dcqe7c47pins0" path="res://connection_line.gd" id="3_3jquc"]
 [ext_resource type="Script" uid="uid://2drxk88wqre0" path="res://civilzation.gd" id="3_r6i2g"]
 [ext_resource type="Script" uid="uid://c76hm1uhb74vu" path="res://firecone.gd" id="6_xtxsn"]
+[ext_resource type="Texture2D" uid="uid://dk5swde0ack7y" path="res://New Piskel (1) (1).png" id="7_53r57"]
 [ext_resource type="Script" uid="uid://dg5ws3kq6t8yr" path="res://camera_2d.gd" id="7_r6i2g"]
+[ext_resource type="Texture2D" uid="uid://cp33nqjjnavwo" path="res://New Piskel (1) (2).png" id="9_orrs1"]
+[ext_resource type="Texture2D" uid="uid://bo1oho864gxeo" path="res://New Piskel (1) (3).png" id="10_r3m0h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v1acx"]
 texture = ExtResource("1_tx4pt")
@@ -108,14 +110,27 @@ script = ExtResource("3_3jquc")
 [node name="dragon" type="CharacterBody2D" parent="." unique_id=1269554324]
 script = ExtResource("1_lq68o")
 
-[node name="dragonsprite" type="Sprite2D" parent="dragon" unique_id=634654481]
-texture = ExtResource("2_hkqo0")
+[node name="Head" type="Sprite2D" parent="dragon" unique_id=634654481]
+texture = ExtResource("7_53r57")
 
 [node name="fireorigin" type="Marker2D" parent="dragon" unique_id=727517202]
 
 [node name="firecone" type="Polygon2D" parent="dragon" unique_id=1682990108 node_paths=PackedStringArray("civilization")]
+position = Vector2(0, -10.63)
 script = ExtResource("6_xtxsn")
 civilization = NodePath("../../TileMapLayer")
+
+[node name="Body1" type="Sprite2D" parent="dragon" unique_id=1947707927]
+texture = ExtResource("9_orrs1")
+
+[node name="Body2" type="Sprite2D" parent="dragon" unique_id=1462803735]
+texture = ExtResource("9_orrs1")
+
+[node name="Body3" type="Sprite2D" parent="dragon" unique_id=1530716444]
+texture = ExtResource("9_orrs1")
+
+[node name="Tail" type="Sprite2D" parent="dragon" unique_id=368305967]
+texture = ExtResource("10_r3m0h")
 
 [node name="effects" type="Node2D" parent="." unique_id=1103000637]
 

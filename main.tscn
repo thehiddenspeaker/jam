@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dibdtahu3vlkw" path="res://civilization.png" id="3_lquwl"]
 [ext_resource type="Texture2D" uid="uid://d8kcax77d3x5" path="res://rebuildtime.png" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bgmvtemq4ww1n" path="res://burnscene.tscn" id="5_gameworld"]
+[ext_resource type="PackedScene" uid="uid://b485tvxl3qcrp" path="res://music.tscn" id="6_7mycd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00t6f"]
 bg_color = Color(0, 0, 1, 1)
@@ -379,6 +380,8 @@ layout_mode = 0
 offset_top = 46.0
 offset_right = 273.0
 offset_bottom = 57.0
+
+[node name="Music" parent="." unique_id=993442736 instance=ExtResource("6_7mycd")]
 
 [connection signal="button_down" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon" to="." method="dragonDown"]
 [connection signal="button_up" from="MarginContainer/gamelayout/Panel3/Node/Panel2/Dragon" to="." method="dragonUp"]
