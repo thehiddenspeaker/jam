@@ -69,6 +69,10 @@ script = ExtResource("3_r6i2g")
 
 [node name="dragon" type="CharacterBody2D" parent="gamearea/SubViewport/world" unique_id=1269554324]
 script = ExtResource("1_lq68o")
+speed = null
+turn_speed = null
+world_size = null
+bounce_speed = null
 
 [node name="dragonsprite" type="Sprite2D" parent="gamearea/SubViewport/world/dragon" unique_id=634654481]
 texture = ExtResource("2_hkqo0")

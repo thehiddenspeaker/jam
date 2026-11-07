@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var speed: float = 50.0
 @export var turn_speed: float = 1.5
 @export var world_size: Vector2 = Vector2(512, 512)
-@export var bounce_speed: float = 0.9
+
 
 var direction: float = 1.0
 
@@ -36,22 +36,22 @@ func _physics_process(delta: float) -> void:
 	# Bounce off left boundary.
 	if position.x < 0:
 		position.x = 0
-		velocity = velocity.bounce(Vector2.RIGHT) * bounce_speed
+		velocity = velocity.bounce(Vector2.RIGHT) 
 
 	# Bounce off right boundary.
 	if position.x > world_size.x:
 		position.x = world_size.x
-		velocity = velocity.bounce(Vector2.LEFT) * bounce_speed
+		velocity = velocity.bounce(Vector2.LEFT) 
 
 	# Bounce off top boundary.
 	if position.y < 0:
 		position.y = 0
-		velocity = velocity.bounce(Vector2.DOWN) * bounce_speed
+		velocity = velocity.bounce(Vector2.DOWN) 
 
 	# Bounce off bottom boundary.
 	if position.y > world_size.y:
 		position.y = world_size.y
-		velocity = velocity.bounce(Vector2.UP) * bounce_speed
+		velocity = velocity.bounce(Vector2.UP)
 
 	# Turn dragon to match its new direction.
 	if velocity.length_squared() > 0:

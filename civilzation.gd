@@ -27,7 +27,8 @@ const WORLD_SIZE = Vector2i(32, 32)
 @export var village_clustering_distance = 4.0
 @export var city_spacing_distance = 8.0
 @export var castle_attraction_distance = 6.0
-
+@export var guaranteed_destroy_distance: float = 32.0
+@export var distant_building_destroy_chance: float = 0.25
 # SPAWNING SETTINGS
 @export var random_village_chance = 0.1
 @export var village_nearby_distance = 4.0
@@ -151,23 +152,80 @@ func is_good_village_location(position: Vector2i) -> bool:
 			return true
 
 	return near_village
+func attempt_spawn_city():
+	if not villages_can_become_cities:
+		return
+
+	for location in buildings:
+		if buildings[location]["kind"] != "village":
+			continue
+
+		var nearby_villages = 0
+		var too_close_to_city = false
+
+		for other_location in buildings:
+			var distance = Vector2(location).distance_to(Vector2(other_location))
+			var kind = buildings[other_location]["kind"]
+
+			if kind == "village" and distance <= village_clustering_distance:
+				nearby_villages += 1
+
+			if kind == "city" and distance < city_spacing_distance:
+				too_close_to_city = true
+
+		if nearby_villages >= 3 and not too_close_to_city:
+			buildings[location]["kind"] = "city"
+			set_cell(location, SOURCE_ID, CITY)
+			return
+func attempt_spawn_castle():
+	if not cities_can_become_castles:
+		return
+
+	for location in buildings:
+		if buildings[location]["kind"] != "city":
+			continue
+
+		var nearby_villages = 0
+		var too_close_to_castle = false
+
+		for other_location in buildings:
+			var distance = Vector2(location).distance_to(Vector2(other_location))
+			var kind = buildings[other_location]["kind"]
+
+			if kind == "village" and distance <= castle_attraction_distance:
+				nearby_villages += 1
+
+			if kind == "castle" and distance < city_spacing_distance:
+				too_close_to_castle = true
+
+		if nearby_villages >= 2 and not too_close_to_castle:
+			buildings[location]["kind"] = "castle"
+			set_cell(location, SOURCE_ID, CASTLE)
+			return
+
 func destroy_in_fire(fire):
-	var fire_steps = 8
+	var fire_steps = 20
 
 	for i in range(fire_steps):
 		var distance = float(i) / float(fire_steps - 1)
-		var local_fire_position = Vector2(0, -fire.fire_length * distance)
+
+		var local_fire_position = Vector2(
+			0,
+			-fire.fire_length * distance
+		)
+
 		var world_position = fire.to_global(local_fire_position)
 		var tile_pos = local_to_map(world_position)
 
 		var source_id = get_cell_source_id(tile_pos)
-		var atlas = get_cell_atlas_coords(tile_pos)
 
 		if source_id != SOURCE_ID:
 			continue
 
+		var atlas = get_cell_atlas_coords(tile_pos)
+
 		# Burn grass
-		if atlas == GRASS:
+		if atlas == VILLAGE or atlas == GRASS:
 			if randf() > grass_burn_chance:
 				continue
 
@@ -178,12 +236,15 @@ func destroy_in_fire(fire):
 			regrowing_tiles.append(tile_pos)
 			regrow_grass(tile_pos)
 
-		# Destroy villages
-		elif atlas == VILLAGE:
-			if randf() > 0.9:
-				continue
+		# Destroy villages and cities
+		elif  atlas == CITY or atlas == CASTLE:
+			var building_distance = world_position.distance_to(fire.global_position)
 
-			destroy_building(tile_pos)
+			if building_distance <= guaranteed_destroy_distance:
+				destroy_building(tile_pos)
+
+			elif randf() < distant_building_destroy_chance:
+				destroy_building(tile_pos)
 
 
 func regrow_grass(tile_pos: Vector2i):
@@ -212,7 +273,17 @@ func destroy_building(tile_pos: Vector2i):
 	destroyed_sites[tile_pos] = building
 func _process(delta):
 	village_timer += delta
+	city_timer += delta
+	castle_timer += delta
 
 	if village_timer >= village_spawn_interval:
 		village_timer = 0.0
 		attempt_spawn_village()
+
+	if city_timer >= city_spawn_interval:
+		city_timer = 0.0
+		attempt_spawn_city()
+
+	if castle_timer >= castle_spawn_interval:
+		castle_timer = 0.0
+		attempt_spawn_castle()
