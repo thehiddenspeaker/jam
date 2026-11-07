@@ -20,8 +20,8 @@ func _ready():
 
 func _process(delta):
 	damage_timer += delta
-	fire_width=25 * pow(1.1,global.upgrade["fireWidth"])
-	fire_length= 120 * pow(1.1, global.upgrade["fireLength"])
+	fire_width=20 * pow(1.1,global.upgrade["fireWidth"])
+	fire_length= 60 * pow(1.1, global.upgrade["fireLength"])
 	polygon = PackedVector2Array([
 		Vector2(-8, 0),
 		Vector2(8, 0),
