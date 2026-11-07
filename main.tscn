@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dyafnddg6ntqy" path="res://fire.png" id="2_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://dibdtahu3vlkw" path="res://civilization.png" id="3_lquwl"]
 [ext_resource type="Texture2D" uid="uid://d8kcax77d3x5" path="res://rebuildtime.png" id="4_7mycd"]
-[ext_resource type="PackedScene" path="res://burnscene.tscn" id="5_gameworld"]
+[ext_resource type="PackedScene" uid="uid://bgmvtemq4ww1n" path="res://burnscene.tscn" id="5_gameworld"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00t6f"]
 bg_color = Color(0, 0, 1, 1)
@@ -84,10 +84,10 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="MarginContainer/gamelayout/Panel2/SubViewportContainer" unique_id=732259785]
 handle_input_locally = false
-size = Vector2i(512, 512)
+size = Vector2i(548, 616)
 render_target_update_mode = 4
 
-[node name="burnscene" parent="MarginContainer/gamelayout/Panel2/SubViewportContainer/SubViewport" instance=ExtResource("5_gameworld")]
+[node name="burnscene" parent="MarginContainer/gamelayout/Panel2/SubViewportContainer/SubViewport" unique_id=1123712026 instance=ExtResource("5_gameworld")]
 
 [node name="Panel3" type="Panel" parent="MarginContainer/gamelayout" unique_id=1637460014]
 layout_mode = 2

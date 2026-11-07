@@ -314,7 +314,10 @@ func destroy_in_fire(fire):
 
 			if tile_pos in regrowing_tiles:
 				continue
-
+			if atlas ==VILLAGE:
+				global.villageDestroyed()
+			else:
+				pass
 			set_cell(tile_pos, SOURCE_ID, BURNT_GRASS)
 			regrowing_tiles.append(tile_pos)
 			regrow_grass(tile_pos)
@@ -326,9 +329,17 @@ func destroy_in_fire(fire):
 			var building_distance = world_position.distance_to(fire.global_position)
 
 			if building_distance <= guaranteed_destroy_distance:
+				if atlas== CITY:
+					global.cityDestroyed()
+				else:
+					global.castleDestroyed()
 				destroy_building(tile_pos)
 
 			elif randf() < distant_building_destroy_chance:
+				if atlas== CITY:
+					global.cityDestroyed()
+				else:
+					global.castleDestroyed()
 				destroy_building(tile_pos)
 
 
