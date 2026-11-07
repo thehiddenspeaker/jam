@@ -23,10 +23,9 @@ func _process(delta):
 
 	if damage_timer >= damage_interval:
 		damage_timer = 0.0
-		print("FIRE CHECK")
-
+		
 		if civilization != null:
-			print("CALLING CIVILIZATION")
+			
 			civilization.destroy_in_fire(self)
 		else:
 			print("NO CIVILIZATION ASSIGNED")

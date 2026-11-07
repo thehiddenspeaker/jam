@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bsckhgosj1xph" path="res://New Piskel (2).png" id="1_3jquc"]
 [ext_resource type="Script" uid="uid://cpti6en772h0p" path="res://dragon.gd" id="1_lq68o"]
 [ext_resource type="Texture2D" uid="uid://dvfksrtp27st0" path="res://New Piskel (1).png" id="2_hkqo0"]
+[ext_resource type="Script" uid="uid://dcqe7c47pins0" path="res://connection_line.gd" id="3_3jquc"]
 [ext_resource type="Script" uid="uid://2drxk88wqre0" path="res://civilzation.gd" id="3_r6i2g"]
 [ext_resource type="Script" uid="uid://c76hm1uhb74vu" path="res://firecone.gd" id="6_xtxsn"]
 
@@ -67,12 +68,14 @@ render_target_update_mode = 4
 tile_set = SubResource("TileSet_v1acx")
 script = ExtResource("3_r6i2g")
 
+[node name="ConnectionLine" type="Node2D" parent="gamearea/SubViewport/world/TileMapLayer" unique_id=1421946460]
+script = ExtResource("3_3jquc")
+
 [node name="dragon" type="CharacterBody2D" parent="gamearea/SubViewport/world" unique_id=1269554324]
 script = ExtResource("1_lq68o")
 speed = null
 turn_speed = null
 world_size = null
-bounce_speed = null
 
 [node name="dragonsprite" type="Sprite2D" parent="gamearea/SubViewport/world/dragon" unique_id=634654481]
 texture = ExtResource("2_hkqo0")
