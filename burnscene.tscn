@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://bgmvtemq4ww1n"]
+
+[ext_resource type="Texture2D" uid="uid://bsckhgosj1xph" path="res://New Piskel (2).png" id="1_3jquc"]
+[ext_resource type="Script" uid="uid://cpti6en772h0p" path="res://dragon.gd" id="1_lq68o"]
+[ext_resource type="Texture2D" uid="uid://1j1fowivp5s4" path="res://New Piskel (4).png" id="1_tx4pt"]
+[ext_resource type="Texture2D" uid="uid://tyccfjax44rm" path="res://New Piskel (3).png" id="1_xtxsn"]
+[ext_resource type="Script" uid="uid://dcqe7c47pins0" path="res://connection_line.gd" id="3_3jquc"]
+[ext_resource type="Script" uid="uid://2drxk88wqre0" path="res://civilzation.gd" id="3_r6i2g"]
+[ext_resource type="Script" uid="uid://c76hm1uhb74vu" path="res://firecone.gd" id="6_xtxsn"]
+[ext_resource type="Texture2D" uid="uid://dk5swde0ack7y" path="res://New Piskel (1) (1).png" id="7_53r57"]
+[ext_resource type="Script" uid="uid://dg5ws3kq6t8yr" path="res://camera_2d.gd" id="7_r6i2g"]
+[ext_resource type="Texture2D" uid="uid://cp33nqjjnavwo" path="res://New Piskel (1) (2).png" id="9_orrs1"]
+[ext_resource type="Texture2D" uid="uid://bo1oho864gxeo" path="res://New Piskel (1) (3).png" id="10_r3m0h"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v1acx"]
+texture = ExtResource("1_tx4pt")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tx4pt"]
+texture = ExtResource("1_xtxsn")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_smm5j"]
+texture = ExtResource("1_3jquc")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_v1acx"]
+sources/2 = SubResource("TileSetAtlasSource_smm5j")
+sources/1 = SubResource("TileSetAtlasSource_tx4pt")
+sources/0 = SubResource("TileSetAtlasSource_v1acx")
+
+[node name="world" type="Node2D" unique_id=812249096]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=286463404]
+tile_set = SubResource("TileSet_v1acx")
+script = ExtResource("3_r6i2g")
+
+[node name="ConnectionLine" type="Node2D" parent="TileMapLayer" unique_id=1421946460]
+script = ExtResource("3_3jquc")
+
+[node name="dragon" type="CharacterBody2D" parent="." unique_id=1269554324]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_lq68o")
+segment_spacing = 32.0
+
+[node name="Head" type="Sprite2D" parent="dragon" unique_id=634654481]
+texture = ExtResource("7_53r57")
+
+[node name="fireorigin" type="Marker2D" parent="dragon" unique_id=727517202]
+
+[node name="firecone" type="Polygon2D" parent="dragon" unique_id=1682990108 node_paths=PackedStringArray("civilization")]
+position = Vector2(0, -11.2)
+scale = Vector2(0.7, 0.7)
+script = ExtResource("6_xtxsn")
+fire_length = 60.0
+civilization = NodePath("../../TileMapLayer")
+
+[node name="Body1" type="Sprite2D" parent="dragon" unique_id=1947707927]
+texture = ExtResource("9_orrs1")
+flip_v = true
+
+[node name="Body2" type="Sprite2D" parent="dragon" unique_id=1462803735]
+texture = ExtResource("9_orrs1")
+flip_v = true
+
+[node name="Body3" type="Sprite2D" parent="dragon" unique_id=1530716444]
+texture = ExtResource("9_orrs1")
+flip_v = true
+
+[node name="Tail" type="Sprite2D" parent="dragon" unique_id=368305967]
+rotation = 3.1415927
+texture = ExtResource("10_r3m0h")
+flip_v = true
+
+[node name="effects" type="Node2D" parent="." unique_id=1103000637]
+
+[node name="resources" type="Node2D" parent="." unique_id=2002794111]
+
+[node name="buildings" type="Node2D" parent="." unique_id=1869525427]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1232950710]
+position = Vector2(256, 256)
+script = ExtResource("7_r6i2g")

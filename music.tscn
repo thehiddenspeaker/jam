@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b485tvxl3qcrp"]
+
+[ext_resource type="AudioStream" uid="uid://ilhjeei6h7nu" path="res://flightofthedragon-short.wav" id="1_3h6ak"]
+[ext_resource type="Script" uid="uid://bu7o4o50cm4iu" path="res://music.gd" id="2_5vxup"]
+
+[node name="Music" type="AudioStreamPlayer" unique_id=993442736]
+stream = ExtResource("1_3h6ak")
+volume_db = 5.582
+autoplay = true
+playback_type = 1
+script = ExtResource("2_5vxup")
