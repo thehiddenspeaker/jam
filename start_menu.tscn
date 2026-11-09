@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://buwqdvtrogj7k"]
+
+[ext_resource type="Script" uid="uid://ce0dfrwsuqwan" path="res://start_menu.gd" id="1_jwbto"]
+
+[node name="Start Menu" type="Control" unique_id=1038763673]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jwbto")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=260929576]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14808938, 0.06893631, 0.0884385, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1712524672]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=707466253]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 35
+alignment = 1
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1093863413]
+layout_mode = 2
+text = "DRAGONFLIGHT START BUTTON BELOW"
+horizontal_alignment = 1
+
+[node name="Start" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1347131512]
+layout_mode = 2
+text = "Start"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1926353668]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
